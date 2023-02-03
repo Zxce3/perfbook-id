@@ -2,503 +2,516 @@
 % mainfile: ../perfbook.tex
 % SPDX-License-Identifier: CC-BY-SA-3.0
 
-\QuickQuizChapter{chp:How To Use This Book}{How To Use This Book}{qqzhowto}
+\QuickQuizChapter{chp:How To Use This Book}{Cara Menggunakan Buku Ini}{qqzhowto}
 %
-\Epigraph{If you would only recognize that life is hard, things would be so
-	  much easier for you.}{Louis D. Brandeis}
+\Epigraph{Jika kamu menyadari bahwa hidup itu sulit, maka segalanya akan
+	  jadi lebih mudah.}{Louis D. Brandeis}
 
-The purpose of this book is to help you program
-shared-memory parallel systems without risking your sanity.\footnote{
-	Or, perhaps more accurately, without much greater risk to your
-	sanity than that incurred by non-parallel programming.
-	Which, come to think of it, might not be saying all that much.}
-Nevertheless, you should think of the information in this book as a
-foundation on which to build, rather than as a completed cathedral.
-Your mission, if you choose to accept, is to help make further progress
-in the exciting field of parallel programming---progress that will
-in time render this book obsolete.
+Tujuan dari buku ini adalah untuk membantu Kamu mengembangkan
+program untuk sistem paralel dengan shared-memori tanpa mengorbankan
+kewarasan Kamu.\footnote{
+	Atau, mungkin lebih tepatnya, tanpa mengorbankan kewarasan Kamu
+	dengan lebih banyak risiko daripada yang dihadapi oleh programmer
+	non-paralel.
+	Yang, sekarang saya berpikir, mungkin tidak berarti banyak.}
+Namun, Kamu harus menganggap informasi dalam buku ini sebagai
+dasar untuk dibangun, bukan sebagai sebuah katedral yang selesai.
+Misi Kamu, jika Kamu memilih untuk menerima, adalah untuk membantu
+proses pembangunan kedepan dalam bidang pemrograman paralel---proses
+yang akan pada akhirnya membuat buku ini usang.
 
-Parallel programming in the 21\textsuperscript{st} century is no longer
-focused solely on science, research, and grand-challenge projects.
-And this is all to the good, because it means that parallel programming
-is becoming an engineering discipline.
-Therefore, as befits an engineering discipline, this book examines
-specific parallel-programming tasks and describes how to approach them.
-In some surprisingly common cases, these tasks can be automated.
+Pemrograman paralel di abad ke 21 ini sudah tidak lagi berfokus pada
+ilmu, penelitian, dan proyek tantangan besar.
+Dan ini semua baik, karena berarti bahwa pemrograman paralel menjadi
+disiplin ilmu pengetahuan dan teknologi.
+Oleh karena itu, seperti yang pantas bagi disiplin ilmu pengetahuan dan teknologi,
+buku ini memeriksa tugas-tugas pemrograman paralel khusus dan menggambarkan
+bagaimana menangani mereka.
+Dalam beberapa kasus yang sangat umum, tugas-tugas ini dapat diotomatisasi.
 
-This book is written in the hope that presenting the engineering
-discipline underlying successful
-parallel-programming projects will free a new generation of parallel hackers
-from the need to slowly and painstakingly reinvent old wheels, enabling
-them to instead focus their energy and creativity on new frontiers.
-However, what you get from this book will be determined by what you
-put into it.
-It is hoped that simply reading this book will be helpful,
-and that working the Quick Quizzes will be even more helpful.
-However, the best results come from applying the techniques taught
-in this book to real-life problems.
-As always, practice makes perfect.
+Buku ini ditulis dengan harapan bahwa penjelasan disiplin ilmu
+yang mendasari proyek-proyek pemrograman paralel yang sukses akan membebaskan
+generasi baru hacker paralel dari kebutuhan untuk secara perlahan dan
+berulang-ulang menginventarisasi kembali roda-roda lama, memungkinkan mereka
+untuk fokus pada bidang baru.
+Namun, apa yang kamu dapatkan dari buku ini akan ditentukan oleh apa yang
+kamu masukkan ke dalamnya.
+Ini diharapkan bahwa hanya membaca buku ini akan membantu,
+dan bekerja pada kuis cepat akan lebih membantu.
+Namun, hasil terbaik datang dari menerapkan teknik-teknik yang diajarkan
+dalam buku ini ke masalah-masalah nyata.
+Seperti biasanya, latihan membuat sempurna.
 
-But no matter how you approach it, we sincerely hope that parallel
-programming brings you at least as much fun, excitement, and challenge
-that it has brought to us!
+Tetapi, bagaimana pun kamu menggunakannya, kami berharap dengan pemrograman
+paralel kamu akan mendapatkan hiburan, kegembiraan, dan tantangan yang sama
+yang telah kami dapatkan!
 
 \section{Roadmap}
 \label{sec:howto:Roadmap}
 %
-\epigraph{Cat:
-		Where are you going? \\
+\epigraph{Kucing:
+		Kamu mau kemana? \\
 	  Alice:
-		Which way should I go? \\
-	  Cat:
-		That depends on where you are going. \\
+		Apa arah yang harus aku ambil? \\
+	  Kucing:
+		Tergantung dari mana kamu mau pergi. \\
 	  Alice:
-		I don't know. \\
-	  Cat:
-		Then it doesn't matter which way you go.}
-	 {Lewis Carroll, \emph{Alice in Wonderland}}
+		Aku tidak tahu. \\
+	  Kucing:
+		Maka tidak ada perbedaan mana arah yang harus kamu ambil.}
+	{Lewis Carroll, \emph{Alice in Wonderland}}	
 
-This book is a handbook of widely applicable and heavily
-used design techniques, rather than
-a collection of optimal algorithms with tiny areas of applicability.
-You are currently reading \cref{chp:How To Use This Book}, but
-you knew that already.
-\Cref{chp:Introduction} gives a high-level overview of parallel
-programming.
+Buku ini adalah panduan yang secara luas dan banyak digunakan untuk
+teknik-teknik desain, bukan kumpulan algoritma yang optimal dengan
+area aplikasi yang sangat kecil.
+Kamus sekarang sedang membaca \cref{chp:How To Use This Book}, tapi
+kamu tahu itu sudah memberikan gambaran tingkat tinggi tentang \Cref{chp:Introduction}
+pemrograman paralel.
 
-\Cref{chp:Hardware and its Habits} introduces shared-memory
-parallel hardware.
-After all, it is difficult to write good parallel code unless you
-understand the underlying hardware.
-Because hardware constantly evolves, this chapter will always be
-out of date.
-We will nevertheless do our best to keep up.
-\Cref{chp:Tools of the Trade} then provides a very brief overview
-of common shared-memory parallel-programming primitives.
+\Cref{chp:Hardware and its Habits} pengenalan tentang perangkat keras
+yang berbagi memori paralel.
+Setelah semuanya, sulit untuk menulis kode paralel yang baik kecuali
+kamu memahami dasar dari perangkat keras.
+Karena perangkat keras terus berkembang, bab ini akan pasti
+ketinggalan zaman.
+Kami akan tetap berusaha untuk tetap terkini.
+\Cref{chp:Tools of the Trade} kemudian memberikan ikhtisar primitif-primitif
+yang singkat tentang pemrograman paralel secara umum.
 
-\Cref{chp:Counting} takes an in-depth look at parallelizing
-one of the simplest problems imaginable, namely counting.
-Because almost everyone has an excellent grasp of counting, this chapter
-is able to delve into many important parallel-programming issues without
-the distractions of more-typical computer-science problems.
-My impression is that this chapter has seen the greatest use in
-parallel-programming coursework.
+\Cref{chp:Counting} mengambil pandangan mendalam pada masalah
+paralel yang paling sederhana, yaitu perhitungan.
+Karena hampir semua orang memiliki pemahaman yang baik tentang
+perhitungan, bab ini dapat menyelidiki banyak masalah
+pemrograman paralel yang penting tanpa gangguan dari masalah
+komputer ilmiah yang lebih umum.
+Impresiku adalah bahwa bab ini telah digunakan dalam
+mata kuliah pemrograman paralel.
 
 \Cref{cha:Partitioning and Synchronization Design}
-introduces a number of design-level methods of addressing the issues
-identified in \cref{chp:Counting}.
-It turns out that it is important to address parallelism at
-the design level when feasible:
-To paraphrase \pplsur{Edsger W.}{Dijkstra}~\cite{Dijkstra:1968:LEG:362929.362947},
+memperkenalkan beberapa metode desain untuk mengatasi masalah
+yang diidentifikasi dalam \cref{chp:Counting}.
+Ternyata penting untuk mengatasi paralelisme pada tingkat
+desain jika memungkinkan:
+Untuk mengutip \pplsur{Edsger W.}{Dijkstra}~\cite{Dijkstra:1968:LEG:362929.362947},
 ``retrofitted parallelism considered grossly
 suboptimal''~\cite{PaulEMcKenney2012HOTPARsuboptimal}.
 
-The next three chapters examine three important approaches to
-synchronization.
-\Cref{chp:Locking} covers locking, which is still not only the
-workhorse of production-quality parallel programming, but is also widely
-considered to be parallel programming's worst villain.
-\Cref{chp:Data Ownership} gives a brief overview of data ownership,
-an often overlooked but remarkably pervasive and powerful approach.
-Finally, \cref{chp:Deferred Processing} introduces a number of
-deferred-processing mechanisms, including reference counting,
-hazard pointers, sequence locking, and RCU\@.
+Tiga bab berikutnya memeriksa tiga bagian penting untuk
+sinkronisasi.
+\Cref{chp:Locking} membahas locking, yang bukan hanya
+workhorse dari pemrograman paralel untuk kualitas produksi, tetapi juga
+sering dianggap sebagai hal yang buruk di pemrograman pararel.
+\Cref{chp:Data Ownership} memberikan ikhtisar singkat tentang
+pemilikan data, bagian yang sering diabaikan tetapi
+mempunyai kekuatan yang luar biasa dan sangat luas.
+Akhirnya, \cref{chp:Deferred Processing} memperkenalkan beberapa
+mekanisme deferred-processing, termasuk reference counting,
+hazard pointers, sequence locking, dan RCU\@.
 
-\Cref{chp:Data Structures} applies the lessons of previous
-chapters to hash tables, which are heavily used due
-to their excellent partitionability, which (usually) leads to excellent
-performance and scalability.
+\Cref{chp:Data Structures} menerapkan pelajaran dari bab-bab
+sebelumnya ke tabel hash, yang sering digunakan karena
+partisi yang sangat baik, yang (biasanya) mengarah pada kinerja
+dan skala yang luar biasa.
 
-As many have learned to their sorrow, parallel programming without
-validation is a sure path to abject failure.
-\Cref{chp:Validation} covers various forms of testing.
-It is of course impossible to test reliability into your program
-after the fact, so \cref{chp:Formal Verification}
-follows up with a brief overview of a couple of practical approaches to
-formal verification.
+Seperti yang telah dipelajari banyak orang untuk kesedihannya,
+pemrograman paralel tanpa validasi adalah jalan yang pasti menuju
+kegagalan yang abjek.
+\Cref{chp:Validation} membahas berbagai bentuk pengujian.
+Tentu saja tidak mungkin menguji keandalan ke programmu
+setelah fakta, jadi \cref{chp:Formal Verification}
+mengikuti dengan ikhtisar singkat dari beberapa bagian
+praktis untuk verifikasi formal.
 
 \Cref{chp:Putting It All Together}
-contains a series of moderate-sized parallel programming problems.
-The difficulty of these problems vary, but should be appropriate for
-someone who has mastered the material in the previous chapters.
+berisi serangkaian masalah pemrograman paralel berukuran sedang.
+Kesulitan masalah-masalah ini bervariasi, tetapi seharusnya
+cocok bagi seseorang yang telah menguasai materi dalam bab-bab
+sebelumnya.
 
 \Cref{sec:advsync:Advanced Synchronization}
-looks at advanced synchronization methods, including
-non-blocking synchronization and parallel real-time computing,
-while \cref{chp:Advanced Synchronization: Memory Ordering}
-covers the advanced topic of memory ordering.
-\Cref{chp:Ease of Use} follows up with some ease-of-use advice.
+melihat metode sinkronisasi lanjutan, termasuk sinkronisasi
+non-blocking dan komputasi real-time paralel,
+sedangkan \cref{chp:Advanced Synchronization: Memory Ordering}
+mengulas topik lanjutan tentang pengurutan memori.
+\Cref{chp:Ease of Use} mengikuti dengan beberapa saran
+kemudahan penggunaan.
 \Cref{chp:Conflicting Visions of the Future}
-looks at a few possible future directions, including
-shared-memory parallel system design, software and hardware transactional
-memory, and functional programming for parallelism.
-Finally, \cref{chp:Looking Forward and Back} reviews the material in
-this book and its origins.
+melihat beberapa arah masa depan, yang mungkin termasuk
+desain sistem shared-memory paralel, transaksi perangkat lunak
+dan perangkat keras, dan pemrograman fungsional untuk
+paralelisme.
+Akhirnya, \cref{chp:Looking Forward and Back} meninjau
+materi dalam buku ini dan asal-usulnya.
 
-This chapter is followed by a number of appendices.
-The most popular of these appears to be
+Bab ini diikuti oleh beberapa lampiran.
+Yang paling populer dari mereka sepertinya adalah
 \cref{chp:app:whymb:Why Memory Barriers?},
-which delves even further into memory ordering.
+yang mendalami memory-ordering.
 \Cref{chp:app:Answers to Quick Quizzes}
-contains the answers to the infamous Quick Quizzes, which are discussed in
-the next section.
+mengandung jawaban dari kuis cepat yang sangat terkenal, yang
+dibahas dalam bagian berikutnya.
 
 \section{Quick Quizzes}
 \label{sec:howto:Quick Quizzes}
 %
-\epigraph{Undertake something difficult, otherwise you will never grow.}
-	 {Abbreviated from Ronald E.~Osburn}
+\epigraph{Lakukan sesuatu yang sulit, jika tidak Kamu tidak akan
+	berkembang.}
+	 {Singkat dari Ronald E.~Osburn}
 
-``Quick quizzes'' appear throughout this book, and the answers may
-be found in
-\cref{chp:app:Answers to Quick Quizzes} starting on
+``Quick quizzes'' muncul di seluruh buku ini, dan jawabannya
+dapat ditemukan di
+\cref{chp:app:Answers to Quick Quizzes} dimulai dari
 \cpageref{chp:app:Answers to Quick Quizzes}.
-Some of them are based on material in which that quick quiz
-appears, but others require you to think beyond that section, and,
-in some cases, beyond the realm of current knowledge.
-As with most endeavors, what you get out of this book is largely
-determined by what you are willing to put into it.
-Therefore, readers who make a genuine effort to solve a quiz before
-looking at the answer
-find their effort repaid handsomely with increased understanding
-of parallel programming.
+Beberapa dari mereka didasarkan pada materi di mana kuis cepat
+itu muncul, tetapi beberapa lainnya memerlukan Kamu untuk berpikir
+di luar bagian itu, dan, dalam beberapa kasus, di luar cakupan
+pengetahuan saat ini.
+Seperti kebanyakan upaya, apa yang Kamu
+dapatkan dari buku ini tergantung pada apa yang Kamu siapkan untuk
+memasukkannya.
+
+Oleh karena itu, pembaca yang membuat usaha yang sungguh-sungguh
+untuk menyelesaikan kuis sebelum melihat jawabannya
+mendapatkan upaya mereka dibayar dengan
+pemahaman yang meningkat tentang pemrograman paralel.
+
 
 \QuickQuizSeries{%
 \QuickQuizB{
-	Where are the answers to the Quick Quizzes found?
+	Di mana Kamu dapat menemukan jawaban dari kuiz cepat?
 }\QuickQuizAnswerB{
-	In \cref{chp:app:Answers to Quick Quizzes} starting on
+	Di \cref{chp:app:Answers to Quick Quizzes} mulai
 	\cpageref{chp:app:Answers to Quick Quizzes}.
-	Hey, I thought I owed you an easy one!
+	Hai, saya pikir saya harus memberi Kamu yang mudah!
 }\QuickQuizEndB
 %
 \QuickQuizM{
-	Some of the Quick Quiz questions seem to be from the viewpoint
-	of the reader rather than the author.
-	Is that really the intent?
+	Beberapa pertanyaan kuis cepat tampaknya berasal dari sudut pandang
+	pembaca daripada penulis.
+	Apakah itu benar-benar niatnya?
 }\QuickQuizAnswerM{
-	Indeed it is!
-	Many are questions that Paul E.~McKenney would probably have
-	asked if he was a novice student in a class covering this material.
-	It is worth noting that Paul was taught most of this material by
-	parallel hardware and software, not by professors.
-	In Paul's experience, professors are much more likely to provide
-	answers to verbal questions than are parallel systems, recent
-	advances in voice-activated assistants notwithstanding.
-	Of course, we could have a lengthy debate over which of professors
-	or parallel systems provide the most useful answers to these sorts
-	of questions,
-	but for the time being let's just agree that usefulness of
-	answers varies widely across the population both of professors
-	and of parallel systems.
+	Ya Benar!
+	Banyak pertanyaan yang mungkin dimiliki oleh Paul E. ~ McKenney
+	Dia ditanya apakah dia adalah seorang mahasiswa pemula di kelas yang mencakup materi ini.
+	Perlu dicatat bahwa Paulus diajari sebagian besar materi ini oleh
+	Perangkat keras dan perangkat lunak paralel, bukan oleh profesor.
+	Dalam pengalaman Paul, profesor jauh lebih mungkin untuk menyediakan
+	Jawaban atas pertanyaan verbal daripada sistem paralel, baru -baru ini
+	Kemajuan dalam asisten yang diaktifkan suara.
+	Tentu saja, kita bisa berdebat panjang tentang profesor mana
+	atau sistem paralel memberikan jawaban yang paling berguna untuk jenis
+	pertanyaan ini,
+	tetapi untuk saat ini, mari kita setujui hanya untuk kegunaannya
+	Jawaban sangat bervariasi di seluruh populasi kedua profesor
+	dan sistem paralel.
 
-	Other quizzes are quite similar to actual questions that have been
-	asked during conference presentations and lectures covering the
-	material in this book.
-	A few others are from the viewpoint of the author.
+	Kuis lain sangat mirip dengan pertanyaan aktual yang telah terjadi
+	ditanya selama presentasi konferensi dan kuliah yang mencakup
+	materi dalam buku ini.
+	Beberapa orang lain berasal dari sudut pandang penulis.
 }\QuickQuizEndM
 %
 \QuickQuizE{
-	These Quick Quizzes are just not my cup of tea.
-	What can I do about it?
+	Kuis cepat ini bukan secangkir teh saya.
+	Apa yang bisa saya lakukan?
 }\QuickQuizAnswerE{
-Here are a few possible strategies:
+Berikut adalah beberapa strategi yang mungkin Kamu pertimbangkan:
 
 \begin{enumerate}
-\item	Just ignore the Quick Quizzes and read the rest of
-	the book.
-	You might miss out on the interesting material in
-	some of the Quick Quizzes, but the rest of the book
-	has lots of good material as well.
-	This is an eminently reasonable approach if your main
-	goal is to gain a general understanding of the material
-	or if you are skimming through the book to find a
-	solution to a specific problem.
-\item	Look at the answer immediately rather than investing
-	a large amount of time in coming up with your own
-	answer.
-	This approach is reasonable when a given Quick Quiz's
-	answer holds the key to a specific problem you are
-	trying to solve.
-	This approach is also reasonable if you want a somewhat
-	deeper understanding of the material, but when you do not
-	expect to be called upon to generate parallel solutions given
-	only a blank sheet of paper.
-\item	If you find the Quick Quizzes distracting but impossible
-	to ignore, you can always clone the \LaTeX{} source for
-	this book from the git archive.
-	You can then run the command \co{make nq}, which will
-	produce a \co{perfbook-nq.pdf}.
-	This PDF contains unobtrusive boxed tags where the Quick Quizzes
-	would otherwise be, and gathers each chapter's Quick Quizzes
-	at the end of that chapter in the classic textbook style.
-\item	Learn to like (or at least tolerate) the Quick Quizzes.
-	Experience indicates that quizzing yourself periodically
-	while reading greatly increases comprehension and depth
-	of understanding.
+\item	Abaikan saja kuis cepat dan baca isi buku ini.
+	Kamu mungkin melewatkan materi yang menarik
+	beberapa kuis cepat, tetapi sisa buku ini
+	memiliki banyak bahan bagus juga.
+	Ini adalah pendekatan yang sangat masuk akal jika utama Kamu
+	Tujuannya adalah untuk mendapatkan pemahaman umum tentang materi
+	atau jika Kamu membaca sekilas buku ini untuk menemukan
+	solusi untuk masalah tertentu.
+\item	Lihatlah jawaban segera setelah Kamu menyelesaikan kuis cepat.
+	Ini adalah pendekatan yang masuk akal jika kuis cepat
+	dalam suatu bab memiliki kunci untuk masalah yang Kamu
+	coba selesaikan.
+	Ini juga masuk akal jika Kamu ingin pemahaman yang sedikit lebih dalam
+	materi, tetapi ketika Kamu tidak berharap untuk diuji untuk
+	menghasilkan solusi yang sama diberikan hanya lembaran kosong.
+\item   Jika kamu menemukan kuis cepat yang mengganggu tetapi tidak mungkin
+	diabaikan, kamu bisa selalu mengkloning \LaTeX{} sumber untuk
+	buku ini dari arsip git.
+	Kamu bisa kemudian menjalankan perintah \co{make nq}, yang akan
+	menghasilkan \co{perfbook-nq.pdf}.
+	PDF ini berisi kotak-kotak yang tidak mengganggu tag di mana kuis cepat
+	sebaliknya, dan mengumpulkan setiap bab kuis cepat
+	pada akhir bab itu dalam gaya buku teks klasik.
+\item	Latihlah untuk menyukai (atau setidaknya menoleransi) kuis cepat.
+	Pengalaman menunjukkan bahwa menguji diri sendiri secara berkala
+	saat membaca sangat meningkatkan pemahaman dan kedalaman
+	pemahaman.
 \end{enumerate}
 
-Note that the quick quizzes are hyperlinked to the answers and vice versa.
-Click either the ``Quick Quiz'' heading or the small black square
-to move to the beginning of the answer.
-From the answer, click on the heading or the small black square to
-move to the beginning of the quiz, or, alternatively, click on the
-small white square at the end of the answer to move to the end of the
-corresponding quiz.
+Catat bahwa kuis cepat dihubungkan ke jawaban dan sebaliknya.
+Klik judul ``Quick Quiz'' atau kotak hitam kecil
+untuk pindah ke awal jawaban.
+Dari jawaban, klik judul atau kotak hitam kecil untuk
+pindah ke awal kuis, atau, alternatif, klik kotak putih kecil
+di akhir jawaban untuk pindah ke akhir
+kuis yang sesuai.
 }\QuickQuizEndE
 }
 
-In short, if you need a deep
-understanding of the material, then you should invest some time
-into answering the Quick Quizzes.
-Don't get me wrong, passively reading the material can be quite
-valuable, but gaining full problem-solving capability really
-does require that you practice solving problems.
-Similarly, gaining full code-production capability really does
-require that you practice producing code.
+Singkatnya, jika Kamu membutuhkan pemahaman yang mendalam
+dari materi, Kamu harus menginvestasikan waktu
+untuk menjawab kuis cepat.
+Jangan salah paham, membaca secara pasif materi dapat sangat
+berharga, tetapi mendapatkan kemampuan pemecahan masalah yang lengkap benar-benar
+membutuhkan Kamu untuk berlatih memecahkan masalah.
+Hal yang sama berlaku untuk mendapatkan kemampuan produksi kode yang lengkap
+benar-benar membutuhkan Kamu untuk berlatih menghasilkan kode.
+
 
 \QuickQuiz{
-	If passively reading this book doesn't get me full problem-solving
-	and code-production capabilities, what on earth is the point???
+	Jika hanya membaca buku ini secara pasif tidak membuat saya
+	mendapatkan kemampuan pemecahan masalah dan produksi kode yang lengkap,
+	apakah ada artinya???
 }\QuickQuizAnswer{
-	For those preferring analogies, coding concurrent software is
-	similar to playing music in that there are good uses for many
-	different levels of talent and skill.
-	Not everyone needs to devote their entire live to becoming a
-	concert pianist.
-	In fact, for every such virtuoso, there are a great many lesser
-	pianists whose of music is welcomed by their friends and families.
-	But these lesser pianists are probably doing something else to
-	support themselves, and so it is with concurrent coding.
-
-	One potential benefit of passively reading this book is the ability
-	to read and understand modern concurrent code.
-	This ability might in turn permit you to:
+	Bagi mereka yang lebih suka analogi, pemrograman perangkat lunak
+	bersamaan mirip dengan memainkan musik dalam hal banyak
+	kegunaan yang baik untuk banyak tingkat keterampilan dan keterampilan.
+	Tidak semua orang perlu menghabiskan seluruh hidupnya menjadi
+	seorang pianis konser.
+	Dalam hal ini, untuk setiap pianis virtuoso seperti itu, ada banyak
+	pianis yang lebih rendah yang musiknya disambut oleh teman-teman dan
+	keluarga mereka.
+	Tetapi pianis ini mungkin sedang melakukan sesuatu yang lain untuk
+	mendukung diri mereka sendiri, dan demikian pula dengan pemrograman bersamaan.
+	
+	Satu potensi manfaat membaca secara pasif buku ini adalah kemampuan
+	membaca dan memahami kode bersamaan modern.
+	Kemampuan ini mungkin pada gilirannya memungkinkan Kamu untuk:
 
 	\begin{enumerate}
-	\item	See what the kernel does so that you can check to see
-		if a proposed use case is valid.
-	\item	Chase down a kernel bug.
-	\item	Use information in the kernel to more easily chase down
-		a userspace bug.
-	\item	Produce a fix for a kernel bug.
-	\item	Create a straightforward kernel feature, whether from
-		scratch or using the modern copy-pasta development
-		methodology.
+	\item 	Melihat apa yang dilakukan kernel sehingga Kamu dapat memeriksa
+		apakah kasus penggunaan yang diajukan valid.
+	\item 	Mengejar bug kernel.
+	\item 	Menggunakan informasi dalam kernel untuk lebih mudah
+		mengejar bug userspace.
+	\item 	Menghasilkan perbaikan untuk bug kernel.
+	\item 	Membuat fitur kernel yang sederhana, baik dari nol atau
+		menggunakan metode pengembangan modern copy-pasta.
 	\end{enumerate}
 
-	If you are proficient with straightforward uses of locks and
-	atomic operations, passively reading this book should enable
-	you to successfully apply modern concurrency techniques.
-
-	And finally, if your job is to coordinate the activities of
-	developers making use of modern concurrency techniques, passively
-	reading this book might help you understand what on earth they
-	are talking about.
+	Jika Kamu adalah seorang pemrogram yang berpengalaman, membaca
+	buku ini secara pasif mungkin akan memungkinkan Kamu untuk
+	menggunakan teknik bersamaan modern dengan lebih baik.
+	
+	Dan akhirnya, jika pekerjaan Kamu adalah untuk mengkoordinasikan
+	kegiatan pengembang yang menggunakan teknik bersamaan modern,
+	membaca buku ini secara pasif mungkin akan membantu Kamu
+	memahami apa yang mereka bicarakan.
+	
 }\QuickQuizEnd
 
-I learned this the hard way during coursework for my late-in-life
-Ph.D\@.
-I was studying a familiar topic, and was surprised at how few of
-the chapter's exercises I could answer off the top of my head.\footnote{
-	So I suppose that it was just as well that my professors refused
-	to let me waive that class!}
-Forcing myself to answer the questions greatly increased my
-retention of the material.
-So with these Quick Quizzes I am not asking you to do anything
-that I have not been doing myself.
+Saya belajar ini dengan cara yang keras selama tugas-tugas
+untuk gelar saya.
+Saya sedang mempelajari topik yang saya kenal, dan saya terkejut
+bagaimana sedikitnya dari latihan bab itu yang saya bisa jawab
+dari kepala saya.\footnote{
+	Jadi saya kira bahwa itu baik-baik saja bahwa dosen saya menolak
+	mengizinkan saya untuk menghindari kelas itu!}
+Memaksa diri untuk menjawab pertanyaan itu sangat meningkatkan
+pemahaman saya.
+Jadi dengan kuis cepat ini saya tidak meminta Kamu untuk melakukan
+apa yang saya lakukan sendiri.
 
-Finally, the most common learning disability is thinking that
-you already understand the material at hand.
-The quick quizzes can be an extremely effective cure.
+Akhirnya, penyakit yang paling umum adalah berpikir bahwa
+Kamu sudah memahami materi yang ada.
+
+Pertanyaan cepat dapat menjadi obat yang sangat efektif.
 
 \section{Alternatives to This Book}
 \label{sec:Alternatives to This Book}
 %
-\epigraph{Between two evils I always pick the one I never tried before.}
+\epigraph{Antara dua kejahatan saya selalu memilih satu yang belum pernah saya coba sebelumnya.}
 	 {Mae West}
 
-As \pplsur{Donald}{Knuth} learned the hard way, if you want your book
-to be finite, it must be focused.
-This book focuses on shared-memory parallel programming, with an
-emphasis on software that lives near the bottom of the software stack,
-such as operating-system kernels, parallel data-management systems,
-low-level libraries, and the like.
-The programming language used by this book is C.
+Saat \pplsur{Donald}{Knuth} belajar dengan cara yang keras, Jika Kamu
+mau buku Kamu berakhir, Kamu harus fokus.
+Buku ini berfokus pada pemrograman pembagian memori, dengan
+penekanan pada perangkat lunak yang tinggal di bawah
+perangkat lunak stack, seperti kernel sistem operasi,
+manajemen data paralel, perpustakaan tingkat rendah, dan sebagainya.
+Bahasa pemrograman yang digunakan oleh buku ini adalah C.
 
-If you are interested in other aspects of parallelism, you might well
-be better served by some other book.
-Fortunately, there are many alternatives available to you:
+Jika kamu lebih tertarik di aspek lain paralelisme, Kamu mungkin
+lebih baik disajikan oleh buku lain.
+Untungnya, ada banyak alternatif yang tersedia untuk Kamu:
 
 \begin{enumerate}
-\item	If you prefer a more academic and rigorous treatment of
-	parallel programming,
-	you might like \pplsur{Maurice P.}{Herlihy}'s and \pplsur{Nir}{Shavit}'s
-	textbook~\cite{HerlihyShavit2008Textbook,HerlihyShavit2020Textbook}.
-	This book starts with an interesting combination
-	of low-level primitives at high levels of abstraction
-	from the hardware, and works its way through locking
-	and simple data structures including lists, queues,
-	hash tables, and counters, culminating with transactional
-	memory, all in Java.
-	\ppl{Michael}{Scott}'s textbook~\cite{MichaelScott2013Textbook}
-	approaches similar material with more of a
-	software-engineering focus, and, as far as I know, is
-	the first formally published academic textbook with
-	section devoted to RCU\@.
+\item 	Jika kamu lebih suka pembelajaran yang lebih akademis dan ketat
+	pemrograman paralel, Kamu mungkin suka buku \pplsur{Maurice P.}{Herlihy}'s
+	dan \pplsur{Nir}{Shavit}'s ~\cite{HerlihyShavit2008Textbook,HerlihyShavit2020Textbook}.
+	Buku ini dimulai dengan kombinasi yang menarik
+	primitif rendah tingkat tinggi abstraksi
+	dari perangkat keras, dan bekerja melalui kunci
+	dan struktur data sederhana termasuk daftar, antrian,
+	tabel hash, dan penghitung, mencapai dengan transaksi
+	memory, semua dalam Java.
+	\pplsur{Michael}{Scott}'s buku teks~\cite{MichaelScott2013Textbook}
+	mengarahkan materi yang sama dengan lebih fokus pada
+	perangkat lunak, dan, sejauh yang saya tahu, adalah
+	buku teks akademis pertama yang secara resmi diterbitkan dengan
+	bagian yang didedikasikan untuk RCU\@.
 
 	\pplsur{Maurice P.}{Herlihy}, \pplsur{Nir}{Shavit},
-	\pplsur{Victor}{Luchangco}, and \pplsur{Michael}{Spear} did
-	catch up in their second edition~\cite{HerlihyShavit2020Textbook}
-	by adding short sections on hazard pointers and on \acr{rcu},
-	with the latter in the guise of \acr{ebr}\@.\footnote{
-		Albeit an implementation that contains a reader-preemption
-		bug noted by \ppl{Richard}{Bornat}.}
-	They also include a brief history of both, albeit with an
-	abbreviated history of \acr{rcu} that picks up almost a year after
-	it was accepted into the Linux kernel and more than 20~years
-	after \pplsur{H. T.}{Kung}'s and \pplsur{Philip L.}{Lehman}'s
-	landmark paper~\cite{Kung80}.
-	Those wishing a deeper view of the history may find it in
-	this book's \cref{sec:defer:RCU Related Work}.
+	\pplsur{Victor}{Luchangco}, dan \pplsur{Michael}{Spear} memang
+	mengejar edisi kedua buku teks mereka ~\cite{HerlihyShavit2020Textbook}
+	dengan menambahkan bagian-bagian singkat tentang hazard pointers
+	dan \acr{rcu}, dengan yang terakhir dalam bentuk \acr{ebr} \@.
+	\footnote{
+		Meskipun merupakan implementasi yang berisi preemption pembaca
+			bug dicatat oleh \pplsur{Richard}{Bornat}.}
+	Mereka juga mencakup sejarah singkat keduanya, meskipun dengan
+	sejarah singkat \acr{rcu} yang dipotong sekitar setahun setelah
+	\acr{rcu} diterima ke dalam kernel Linux dan lebih dari 20 tahun
+	setelah karya \pplsur{H. T.}{Kung} dan \pplsur{Philip L.}{Lehman}
+	~\cite{Kung80}.
+	Para pembaca yang ingin pandangan yang lebih mendalam tentang
+	sejarah dapat menemukannya di bab \cref{sec:defer:RCU Related Work}
 
-	However, readers who might otherwise suspect a hostile attitude
-	towards RCU on the part of this textbook's first author should
-	refer to the last full sentence on the first page of one of his
-	papers~\cite{Balmau:2016:FRM:2935764.2935790}.
-	This sentence reads ``QSBR [a particular class of RCU
-	implementations] is fast and can be applied to virtually any
-	data structure.''
-	These are clearly not the words of someone who is hostile
-	towards RCU.
-\item	If you would like an academic treatment of parallel
-	programming from a programming\-/language\-/pragmatics viewpoint,
-	you might be interested in the concurrency chapter from
+	Namun, pembaca yang mungkin mencurigai sikap yang tidak
+	santun terhadap \acr{rcu} dari penulis buku teks pertama ini
+	harus merujuk pada kalimat terakhir pada halaman pertama dari
+	satu karyanya~\cite{Balmau:2016:FRM:2935764.2935790}.
+	Kalimat itu membaca ``QSBR [sebuah kelas tertentu dari
+	implementasi \acr{rcu}] cepat dan dapat diterapkan ke hampir
+	semua struktur data.''
+	Inilah bukanlah kata-kata seseorang yang tidak suka
+	terhadap RCU.
+\item	Jika Kamu lebih suka pembelajaran yang lebih akademis 
+	pemrograman paralel dari sudut pandang pemrograman\-/bahasa\-/pragmatika,
+	Kamu mungkin tertarik pada bab paralelisme dari
 	\pplsur{Michael}{Scott}'s
-	textbook~\cite{MichaelScott2006Textbook,MichaelScott2015Textbook}
-	on programming-language pragmatics.
-\item	If you are interested in an object-oriented patternist
-	treatment of parallel programming focussing on C++,
-	you might try Volumes~2 and~4 of \pplsur{Douglas C.}{Schmidt}'s POSA
+	buku teks~\cite{MichaelScott2006Textbook,MichaelScott2015Textbook}
+	pemrograman bahasa pragmatika.
+\item	Jika Kamu tertarik pada pola-pola objek-orientasi
+	pemrograman paralel yang fokus pada C++,
+	Kamu mungkin mencoba Volumes~2 dan~4 dari \pplsur{Douglas C.}{Schmidt}'s POSA
 	series~\cite{SchmidtStalRohnertBuschmann2000v2Textbook,
 	BuschmannHenneySchmidt2007v4Textbook}.
-	Volume~4 in particular has some interesting chapters
-	applying this work to a warehouse application.
-	The realism of this example is attested to by
-	the section entitled ``Partitioning the Big Ball of Mud'',
-	in which the problems inherent in parallelism often take a back
-	seat to getting one's head around a real-world application.
-\item	If you want to work with Linux-kernel device drivers,
-	then \pplsur{Jonathan}{Corbet}'s, \pplsur{Alessandro}{Rubini}'s,
-	and \pplsur{Greg}{Kroah-Hartman}'s
+	Volume~4 khususnya memiliki beberapa bab menarik
+	menerapkan pekerjaan ini ke aplikasi gudang.
+	Realisme contoh ini dibuktikan oleh
+	bagian yang berjudul ``Partitioning the Big Ball of Mud'',
+	dalam hal masalah inherent dalam paralelisme seringkali
+	mengambil tempat kedua untuk mendapatkan kepala kita
+	untuk mengatasi aplikasi dunia nyata.
+\item	Jika Kamu ingin bekerja dengan perangkat keras Linux,
+	maka \pplsur{Jonathan}{Corbet}'s, \pplsur{Alessandro}{Rubini}'s,
+	dan \pplsur{Greg}{Kroah-Hartman}'s
 	``Linux Device Drivers''~\cite{CorbetRubiniKroahHartman}
-	is indispensable, as is the Linux Weekly News web site
+	adalah tidak tergantikan, sebagaimana juga situs web Linux Weekly News
 	(\url{https://lwn.net/}).
-	There is a large number of books and resources on
-	the more general topic of Linux kernel internals.
-\item	If your primary focus is scientific and technical computing,
-	and you prefer a patternist approach,
-	you might try \pplsur{Timothy G.}{Mattson} et al.'s
-	textbook~\cite{Mattson2005Textbook}.
-	It covers Java, C/C++, OpenMP, and MPI\@.
-	Its patterns are admirably focused first on design,
-	then on implementation.
-\item	If your primary focus is scientific and technical computing,
-	and you are interested in GPUs, CUDA, and MPI, you
-	might check out \ppl{Norm}{Matloff}'s ``Programming on
-	Parallel Machines''~\cite{NormMatloff2017ParProcBook}.
-	Of course, the GPU vendors have quite a bit of additional
-	information~\cite{AMD2020ROCm,CyrilZeller2011GPGPUbasics,NVidia2017GPGPU,NVidia2017GPGPU-university}.
-\item	If you are interested in POSIX Threads, you might take
-	a look at \pplmdl{David R.}{Butenhof}'s book~\cite{Butenhof1997pthreads}.
-	In addition,
-	\ppl{W.~Richard}{Stevens}'s book~\cite{WRichardStevens1992,WRichardStevens2013}
-	covers UNIX and POSIX, and \ppl{Stewart}{Weiss}'s lecture
-	notes~\cite{StewartWeiss2013UNIX} provide an
-	thorough and accessible introduction with a good set of
-	examples.
-\item	If you are interested in C++11, you might like
-	\ppl{Anthony}{Williams}'s ``C++ Concurrency in Action:
+	Terdapat banyak buku dan sumber daya lainnya
+	terkait topik yang lebih umum tentang inti Linux.
+\item	Jika Kamu tertarik pada pemrograman paralel yang
+	terfokus pada komputasi ilmiah dan teknis,
+	maka Kamu mungkin mencoba buku teks \pplsur{Timothy G.}{Mattson} et al.~\cite{Mattson2005Textbook}.
+	Buku teks ini membahas Java, C/C++, OpenMP, dan MPI\@.
+	Pola-pola yang ditawarkan sangat fokus pada desain
+	dan implementasi.
+\item	Jika fokus utama kamu adalah komputasi ilmiah dan teknis,
+	dan kamu tertarik pada GPU, CUDA, dan MPI,
+	maka Kamu mungkin mencoba buku teks \pplsur{Norman L.}{Matloff}~\cite{NormMatloff2017ParProcBook}.
+	Begitu juga dengan vendor GPU yang
+	memiliki banyak informasi tambahan~\cite{AMD2020ROCm,CyrilZeller2011GPGPUbasics,NVidia2017GPGPU,NVidia2017GPGPU-university}.
+\item	Jika Kamu tertarik pada POSIX Threads, Kamu mungkin
+	melihat \pplsur{David R.}{Butenhof}'s buku~\cite{Butenhof1997pthreads}.
+	Dalam tambahan,
+	\pplsur{W.~Richard}{Stevens}'s buku~\cite{WRichardStevens1992,WRichardStevens2013}
+	mengulas UNIX dan POSIX, dan \pplsur{Stewart}{Weiss}'s catatan kuliah
+	~\cite{StewartWeiss2013UNIX} memberikan
+	pengantar yang mendalam dan mudah diakses dengan set contoh yang baik.
+\item	Jika Kamu tertarik pada C++11, Kamu mungkin tertarik pada
+	\pplsur{Anthony}{Williams}'s ``C++ Concurrency in Action:
 	Practical Multithreading''~\cite{AnthonyWilliams2012,AnthonyWilliams2019}.
-\item	If you are interested in C++, but in a Windows environment,
-	you might try \ppl{Herb}{Sutter}'s ``Effective Concurrency''
-	series in
+\item 	Jika Kamu tertarik pada C++, tapi dalam lingkungan Windows,
+	maka Kamu mungkin mencoba \ppl{Herb}{Sutter}'s ``Effective Concurrency''
+	series di
 	Dr.~Dobbs Journal~\cite{HerbSutter2008EffectiveConcurrency}.
-	This series does a reasonable job of presenting a
-	commonsense approach to parallelism.
-\item	If you want to try out Intel Threading Building Blocks,
-	then perhaps \ppl{James}{Reinders}'s book~\cite{Reinders2007Textbook}
-	is what you are looking for.
-\item	Those interested in learning how various types of multi-processor
-	hardware
-	cache organizations affect the implementation of kernel
-	internals should take a look at \ppl{Curt}{Schimmel}'s classic
-	treatment of this subject~\cite{Schimmel:1994:USM:175689}.
-\item	If you are looking for a hardware view, \pplsur{John L.}{Hennessy}'s and
-	\pplsur{David A.}{Patterson}'s classic
-	textbook~\cite{Hennessy2017,Hennessy2011} is well worth a read.
-	A ``Readers Digest'' version of this tome geared for scientific
-	and technical workloads (bashing big arrays) may be found in
-	\ppl{Andrew}{Chien}'s
-	textbook~\cite{AndrewChien2022ComputerArchitectureScientists}.
-	If you are looking for an academic textbook on memory ordering from
-	a more hardware-centric viewpoint,
-	that of \ppl{Daniel}{Sorin} et al.~\cite{DanielJSorin2011MemModel,%
+	Seri ini melakukan pekerjaan yang wajar dalam mempresentasikan
+	pendekatan yang masuk akal terhadap paralelisme.
+\item	Jika kamu ingin mencoba Intel Threading Building Blocks,
+	maka mungkin buku \ppl{James}{Reinders}'s~\cite{Reinders2007Textbook}
+	adalah yang Kamu cari.
+\item	Mereka yang tertarik mempelajari bagaimana berbagai jenis multi-prosesor
+	perangkat keras
+	organisasi cache mempengaruhi implementasi inti
+	perlu memeriksa \ppl{Curt}{Schimmel}'s klasik
+	pemrosesan topik ini~\cite{Schimmel:1994:USM:175689}.
+\item 	Jika kamu mencari tampilan perangkat keras,
+	maka \pplsur{John L.}{Hennessy}'s dan \pplsur{David A.}{Patterson}'s
+	klasik teks~\cite{Hennessy2017,Hennessy2011} sangat layak dibaca.
+	Versi ``Readers Digest'' dari teks ini yang berfokus pada
+	pekerjaan ilmiah dan teknis (menghancurkan array besar)
+	mungkin ditemukan dalam buku teks \ppl{Andrew}{Chien}'s
+	~\cite{AndrewChien2022ComputerArchitectureScientists}.
+	Jika kamu mencari buku teks tentang model pengurutan memori
+	dari sudut pandang yang lebih hardware-orientasi,
+	yang ditulis oleh \ppl{Daniel}{Sorin} et al.~\cite{DanielJSorin2011MemModel,%
 	VijayNagarajan2020MemModel}
-	is highly recommended.
-	For a memory-ordering tutorial from a Linux-kernel viewpoint,
-	\ppl{Paolo}{Bonzini}'s LWN series is a good place to
-	start~\cite{PaoloBonzini2021lockless1,PaoloBonzini2021lockless2,PaoloBonzini2021lockless3,PaoloBonzini2021lockless4,PaoloBonzini2021lockless5,PaoloBonzini2021lockless6}.
-\item	Finally, those using Java might be well-served by \ppl{Doug}{Lea}'s
-	textbooks~\cite{DougLea1997Textbook,Goetz2007Textbook}.
+	dianjurkan.
+	Untuk tutorial pengurutan memori dari sudut pandang Linux-kernel,
+	\ppl{Paolo}{Bonzini}' Seris LWN adalah tempat yang baik untuk
+	mulai~\cite{PaoloBonzini2021lockless1,PaoloBonzini2021lockless2,PaoloBonzini2021lockless3,PaoloBonzini2021lockless4,PaoloBonzini2021lockless5,PaoloBonzini2021lockless6}.
+\item 	Akhirnya, mereka yang menggunakan Java mungkin akan
+	dilayani dengan baik oleh \ppl{Doug}{Lea}'s
+	buku teks~\cite{DougLea1997Textbook,Goetz2007Textbook}.
 \end{enumerate}
 
-However, if you are interested in principles of parallel design
-for low-level software, especially software written in C, read on!
+Namun, jika Kamu tertarik pada prinsip-prinsip desain paralel
+untuk perangkat lunak tingkat rendah, terutama perangkat lunak yang ditulis
+dalam bahasa C, baca lebih lanjut!
 
 \section{Sample Source Code}
 \label{sec:howto:Sample Source Code}
 %
-\epigraph{Use the source, Luke!}{Unknown Star Wars fan}
+\epigraph{Gunakan sumbernya, Luke!}{Penggemar Star Wars tidak dikenal}
 
-This book discusses its fair share of source code, and in many cases
-this source code may be found in the \path{CodeSamples} directory
-of this book's git tree.
-For example, on UNIX systems, you should be able to type the following:
+Buku ini membahas cukup banyak kode sumber, dan dalam banyak kasus
+kode sumber ini dapat ditemukan di direktori \path{CodeSamples}
+git tree buku ini.
+Misalnya, pada sistem UNIX, Kamu harus dapat mengetikkan:
 
 \begin{VerbatimU}
 find CodeSamples -name rcu_rcpls.c -print
 \end{VerbatimU}
 
-This command will locate the file \path{rcu_rcpls.c}, which is called out in
+Perintah ini akan menemukan berkas \path{rcu_rcpls.c}, yang disebutkan dalam
 \cref{chp:app:``Toy'' RCU Implementations}\@.
-Non-UNIX systems have their own well-known ways of locating files by filename.
+Sistem non-UNIX memiliki cara mereka sendiri untuk menemukan berkas berdasarkan nama.
 
 \section{Whose Book Is This?}
 \label{sec:howto:Whose Book Is This?}
 %
-\epigraph{If you become a teacher, by your pupils you'll be taught.}
+\epigraph{Jika kamu menjadi seorang guru, oleh muridmu kamu akan diajari}
 	 {Oscar Hammerstein II}
 
-As the cover says, the editor is one Paul E.~McKenney.
-However, the editor does accept contributions via the
+Sesuai dengan cover, editor buku ini adalah \ppl{Paul E.}{McKenney}.
+Namun, editor menerima kontribusi melalui email list
 \href{mailto:perfbook@vger.kernel.org}
-{\nolinkurl{perfbook@vger.kernel.org}} email list.
-These contributions can be in pretty much any form, with popular
-approaches including text emails,
-patches against the book's \LaTeX{} source, and even \co{git pull} requests.
-Use whatever form works best for you.
+{\nolinkurl{perfbook@vger.kernel.org}}.
+Kontribusi ini dapat berupa email teks, patch terhadap sumber buku \LaTeX{},
+atau bahkan permintaan \co{git pull}.
+Gunakan format yang paling cocok untuk Kamu.
 
-To create patches or \co{git pull} requests, you will need the
-\LaTeX{} source to the book, which is at
+Untuk membuat patch atau permintaan \co{git pull}, Kamu akan membutuhkan
+sumber \LaTeX{} buku ini, yang terletak di
 \url{git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/perfbook.git},
-or, alternatively,
+atau, alternatif,
 \url{https://git.kernel.org/pub/scm/linux/kernel/git/paulmck/perfbook.git}.
-You will of course also need \co{git} and \LaTeX{}, which are
-available as part of most mainstream Linux distributions.
-Other packages may be required, depending on the distribution you use.
-The required list of packages for a few popular distributions is listed
-in the file \path{FAQ-BUILD.txt} in the \LaTeX{} source to the book.
+Kamu tentu saja juga akan membutuhkan \co{git} dan \LaTeX{}, yang tersedia
+sebagai bagian dari sebagian besar distribusi Linux mainstream.
+Paket lain mungkin diperlukan, tergantung pada distribusi yang Kamu gunakan.
+Daftar paket yang diperlukan untuk beberapa distribusi populer tercantum
+di berkas \path{FAQ-BUILD.txt} di sumber \LaTeX{} buku ini.
 
 \begin{listing}
 \begin{VerbatimL}[breaklines=true,breakafter=/,
@@ -507,115 +520,116 @@ in the file \path{FAQ-BUILD.txt} in the \LaTeX{} source to the book.
         numbers=none,xleftmargin=0pt]
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/perfbook.git
 cd perfbook
-# You may need to install a font. See item 1 in FAQ.txt.
-make                     # -jN for parallel build
-evince perfbook.pdf &    # Two-column version
+# Kamu mungkin harus menginstall font. Lihat item 1 di FAQ.txt.
+make                     # -jN untuk pararel build
+evince perfbook.pdf &    # Versi dua kolom
 make perfbook-1c.pdf
-evince perfbook-1c.pdf & # One-column version for e-readers
-make help                # Display other build options
+evince perfbook-1c.pdf & # Versi satu kolom (lebih mudah dibaca e-reader)
+make help                # Menampilkan opsi build lainnya
 \end{VerbatimL}
 \caption{Creating an Up-To-Date PDF}
 \label{lst:howto:Creating a Up-To-Date PDF}
 \end{listing}
 
-To create and display a current \LaTeX{} source tree of this book,
-use the list of Linux commands shown in
+Untuk membuat dan menampilkan pohon sumber \LaTeX{} terkini buku ini,
+gunakan daftar perintah Linux yang ditunjukkan di
 \cref{lst:howto:Creating a Up-To-Date PDF}.
-In some environments, the \co{evince} command that displays \path{perfbook.pdf}
-may need to be replaced, for example, with \co{acroread}.
-The \co{git clone} command need only be used the first time you
-create a PDF, subsequently, you can run the commands shown in
-\cref{lst:howto:Generating an Updated PDF} to pull in any updates
-and generate an updated PDF\@.
-The commands in
-\cref{lst:howto:Generating an Updated PDF}
-must be run within the \path{perfbook} directory created by the commands
-shown in
+Dalam beberapa lingkungan, perintah \co{evince} yang menampilkan
+\path{perfbook.pdf} mungkin perlu diganti, misalnya dengan \co{acroread}.
+Perintah \co{git clone} hanya perlu digunakan pertama kali Kamu membuat PDF,
+selanjutnya, Kamu dapat menjalankan perintah yang ditunjukkan di
+\cref{lst:howto:Membuat PDF yang diperbarui} untuk menarik perubahan apa pun
+dan membuat PDF yang diperbarui.\@
+Perintah di \cref{lst:howto:Membuat PDF yang diperbarui} harus dijalankan
+dalam direktori \path{perfbook} yang dibuat oleh perintah yang ditunjukkan di
 \cref{lst:howto:Creating a Up-To-Date PDF}.
 
 \begin{listing}
 \begin{VerbatimL}[numbers=none,xleftmargin=0pt]
 git remote update
 git checkout origin/master
-make                     # -jN for parallel build
-evince perfbook.pdf &    # Two-column version
+make                     # -jN Untuk pararel build
+evince perfbook.pdf &    # Versi dua kolom
 make perfbook-1c.pdf
-evince perfbook-1c.pdf & # One-column version for e-readers
+evince perfbook-1c.pdf & # Versi satu kolom (lebih mudah dibaca e-reader)
 \end{VerbatimL}
-\caption{Generating an Updated PDF}
-\label{lst:howto:Generating an Updated PDF}
+\caption{Membuat PDF yang diperbarui}
+\label{lst:howto:Membuat PDF yang diperbarui}
 \end{listing}
 
-PDFs of this book are sporadically posted at
+PDF dari buku ini diposting secara sporadis di
 \url{https://kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html}
-and at
+dan di
 \url{http://www.rdrop.com/users/paulmck/perfbook/}.
 
-The actual process of contributing patches and sending \co{git pull}
-requests is similar to that of the Linux kernel, which is documented
-here:
+Proses aktual kontribusi patch dan permintaan \co{git pull} sama seperti
+proses kontribusi kernel Linux, yang dijelaskan di
 \url{https://www.kernel.org/doc/html/latest/process/submitting-patches.html}.
-One important requirement is that each patch (or commit, in the case
-of a \co{git pull} request) must contain a valid \co{Signed-off-by:} line,
-which has the following format:
+Satu persyaratan penting adalah bahwa setiap patch (atau commit, dalam
+kasus permintaan \co{git pull}) harus berisi baris \co{Signed-off-by:} yang
+valid, yang memiliki format sebagai berikut:
 
 \begin{VerbatimU}
-Signed-off-by: My Name <myname@example.org>
+Signed-off-by: Nama ku <namaku@example.org>
 \end{VerbatimU}
 
-Please see \url{https://lkml.org/lkml/2007/1/15/219} for an example
-patch with a \co{Signed-off-by:} line.
-Note well that the \co{Signed-off-by:} line has a very specific meaning,
-namely that you are certifying that:
+Tolong lihat \url{https://lkml.org/lkml/2007/1/15/219} untuk contoh patch
+dengan baris \co{Signed-off-by:}.
+Perhatikan bahwa baris \co{Signed-off-by:} memiliki makna yang sangat
+spesifik, yaitu bahwa Kamu menyatakan bahwa:
 
 \begin{enumerate}[label={(\alph*)}]
-\item	The contribution was created in whole or in part
-	by me and I have the right to submit it under
-	the open source license indicated in the file; or
-\item	The contribution is based upon previous work
-	that, to the best of my knowledge, is covered
-	under an appropriate open source license and I
-	have the right under that license to submit that
-	work with modifications, whether created in whole
-	or in part by me, under the same open source
-	license (unless I am permitted to submit under
-	a different license), as indicated in the file; or
-\item	The contribution was provided directly to me by
-	some other person who certified (a), (b) or (c)
-	and I have not modified it.
-\item	I understand and agree that this project and the
-	contribution are public and that a record of the
-	contribution (including all personal information
-	I submit with it, including my sign-off) is
-	maintained indefinitely and may be redistributed
-	consistent with this project or the open source
-	license(s) involved.
+\item 	Kontribusi yang dibuat sepenuhnya atau sebagian besar oleh Kamu
+	dan Kamu memiliki hak untuk mengirimkannya di bawah lisensi
+	sumber terbuka yang tercantum dalam berkas; atau
+\item	Kontribusi berdasarkan pekerjaan sebelumnya yang, sejauh yang
+	diketahui oleh Kamu, dilindungi oleh lisensi sumber terbuka yang
+	sesuai dan Kamu memiliki hak di bawah lisensi tersebut untuk
+	mengirimkan pekerjaan tersebut dengan modifikasi, baik yang
+	dibuat sepenuhnya atau sebagian besar oleh Kamu, di bawah
+	lisensi sumber terbuka yang sama (kecuali jika Kamu diizinkan
+	mengirimkan di bawah lisensi yang berbeda), seperti yang
+	dicantumkan dalam berkas; atau
+\item	Kontribusi disediakan langsung kepadaku oleh orang lain yang
+	menyatakan (a), (b) atau (c) dan saya tidak mengubahnya.
+\item	Saya memahami dan setuju bahwa proyek ini dan kontribusi
+	adalah publik dan bahwa catatan kontribusi (termasuk semua
+	informasi pribadi yang saya kirimkan bersamanya, termasuk
+	tanda tangan saya) dipertahankan selamanya dan dapat
+	didistribusikan konsisten dengan proyek ini atau lisensi
+	sumber terbuka yang terlibat.
 \end{enumerate}
 
-This is quite similar to the Developer's Certificate of Origin (DCO)
-1.1 used by the Linux kernel.
-You must use your real name:
-I unfortunately cannot accept pseudonymous or anonymous contributions.
+Ini sangat mirip dengan Sertifikat Pengembang (DCO) versi 1.1 yang
+digunakan kernel Linux.
+Kamu harus menggunakan nama asli Kamu:
+Sayangnya, saya tidak dapat menerima kontribusi yang tidak memiliki nama
+asli atau anonim.
 
-The language of this book is American English, however, the open-source
-nature of this book permits translations, and I personally encourage them.
-The open-source licenses covering this book additionally allow you
-to sell your translation, if you wish.
-I do request that you send me a copy of the translation (hardcopy if
-available), but this is a request made as a professional courtesy,
-and is not in any way a prerequisite to the permission that you already
-have under the Creative Commons and GPL licenses.
-Please see the \co{FAQ.txt} file in the source tree for a list of
-translations currently in progress.
-I consider a translation effort to be ``in progress'' once at least one
-chapter has been fully translated.
+Bahasa buku ini adalah bahasa Inggris Amerika, namun, sifat open-source
+dari buku ini memungkinkan terjadinya terjemahan, dan saya pribadi
+menghargainya.
+Lisensi open-source yang melindungi buku ini juga memungkinkan Kamu
+untuk menjual terjemahan Kamu, jika Kamu menginginkannya.
+Saya meminta Kamu untuk mengirimkan saya salinan terjemahan (hardcopy jika
+tersedia), namun, ini adalah permintaan yang saya lakukan sebagai
+kebaikan profesional, dan bukan merupakan syarat yang harus dipenuhi
+sebelum Kamu memiliki izin yang sudah Kamu miliki di bawah lisensi
+Creative Commons dan GPL\@.
+Silakan lihat berkas \co{FAQ.txt} di dalam pohon sumber untuk daftar
+terjemahan yang sedang berlangsung.
+Saya menganggap upaya terjemahan sebagai ``sedang berlangsung'' setelah
+setidaknya satu bab telah diterjemahkan sepenuhnya.
 
-There are many styles under the ``American English'' rubric.
-The style for this particular book is documented in
+Ada banyak gaya di bawah rubrik ``Bahasa Inggris Amerika''.
+Gaya untuk buku ini dijelaskan Di
 \cref{chp:app:styleguide:Style Guide}.
 
-As noted at the beginning of this section, I am this book's editor.
-However, if you choose to contribute, it will be your book as well.
-In that spirit, I offer you \cref{chp:Introduction}, our introduction.
+Seperti dicatat di awal bagian ini, saya editor buku ini.
+Namun, jika Kamu memilih untuk berkontribusi, buku ini akan menjadi buku
+kamu juga.
+Dalam semangat itu, saya menawarkan \cref{chp:Introduction}, bagian
+pengantar kami.
 
 \QuickQuizAnswersChp{qqzhowto}
+
