@@ -10,18 +10,18 @@
 Tujuan dari buku ini adalah untuk membantu Kamu mengembangkan
 program untuk sistem paralel dengan shared-memori tanpa mengorbankan
 kewarasan Kamu.\footnote{
-	Atau, mungkin lebih tepatnya, tanpa mengorbankan kewarasan Kamu
+	Atau, mungkin lebih tepatnya, tanpa mengorbankan kewarasan mu
 	dengan lebih banyak risiko daripada yang dihadapi oleh programmer
 	non-paralel.
 	Yang, sekarang saya berpikir, mungkin tidak berarti banyak.}
 Namun, Kamu harus menganggap informasi dalam buku ini sebagai
 dasar untuk dibangun, bukan sebagai sebuah katedral yang selesai.
-Misi Kamu, jika Kamu memilih untuk menerima, adalah untuk membantu
+Misimu, jika Kamu memilih untuk menerimanya, adalah untuk membantu
 proses pembangunan kedepan dalam bidang pemrograman paralel---proses
 yang akan pada akhirnya membuat buku ini usang.
 
 Pemrograman paralel di abad ke 21 ini sudah tidak lagi berfokus pada
-ilmu, penelitian, dan proyek tantangan besar.
+ilmu, penelitian, dan proyek dengan tantangan besar.
 Dan ini semua baik, karena berarti bahwa pemrograman paralel menjadi
 disiplin ilmu pengetahuan dan teknologi.
 Oleh karena itu, seperti yang pantas bagi disiplin ilmu pengetahuan dan teknologi,
@@ -59,7 +59,7 @@ yang telah kami dapatkan!
 		Aku tidak tahu. \\
 	  Kucing:
 		Maka tidak ada perbedaan mana arah yang harus kamu ambil.}
-	{Lewis Carroll, \emph{Alice in Wonderland}}	
+	{Lewis Carroll, \emph{Alice in Wonderland}}
 
 Buku ini adalah panduan yang secara luas dan banyak digunakan untuk
 teknik-teknik desain, bukan kumpulan algoritma yang optimal dengan
@@ -100,7 +100,7 @@ Tiga bab berikutnya memeriksa tiga bagian penting untuk
 sinkronisasi.
 \Cref{chp:Locking} membahas locking, yang bukan hanya
 workhorse dari pemrograman paralel untuk kualitas produksi, tetapi juga
-sering dianggap sebagai hal yang buruk di pemrograman pararel.
+sering dianggap sebagai hal yang buruk di pemrograman paralel.
 \Cref{chp:Data Ownership} memberikan ikhtisar singkat tentang
 pemilikan data, bagian yang sering diabaikan tetapi
 mempunyai kekuatan yang luar biasa dan sangat luas.
@@ -178,11 +178,11 @@ pemahaman yang meningkat tentang pemrograman paralel.
 
 \QuickQuizSeries{%
 \QuickQuizB{
-	Di mana Kamu dapat menemukan jawaban dari kuiz cepat?
+	Di mana Kamu dapat menemukan jawaban dari kuis cepat?
 }\QuickQuizAnswerB{
 	Di \cref{chp:app:Answers to Quick Quizzes} mulai
 	\cpageref{chp:app:Answers to Quick Quizzes}.
-	Hai, saya pikir saya harus memberi Kamu yang mudah!
+	Woy, saya pikir saya harus memberi Kamu yang mudah!
 }\QuickQuizEndB
 %
 \QuickQuizM{
@@ -190,13 +190,13 @@ pemahaman yang meningkat tentang pemrograman paralel.
 	pembaca daripada penulis.
 	Apakah itu benar-benar niatnya?
 }\QuickQuizAnswerM{
-	Ya Benar!
+	Ya memang itu!
 	Banyak pertanyaan yang mungkin dimiliki oleh Paul E. ~ McKenney
-	Dia ditanya apakah dia adalah seorang mahasiswa pemula di kelas yang mencakup materi ini.
+	Dia ditanya apakah dia adalah seorang mahasiswa baru di kelas yang mencakup materi ini.
 	Perlu dicatat bahwa Paulus diajari sebagian besar materi ini oleh
 	Perangkat keras dan perangkat lunak paralel, bukan oleh profesor.
 	Dalam pengalaman Paul, profesor jauh lebih mungkin untuk menyediakan
-	Jawaban atas pertanyaan verbal daripada sistem paralel, baru -baru ini
+	Jawaban atas pertanyaan verbal daripada sistem paralel, baru-baru ini
 	Kemajuan dalam asisten yang diaktifkan suara.
 	Tentu saja, kita bisa berdebat panjang tentang profesor mana
 	atau sistem paralel memberikan jawaban yang paling berguna untuk jenis
@@ -212,26 +212,26 @@ pemahaman yang meningkat tentang pemrograman paralel.
 }\QuickQuizEndM
 %
 \QuickQuizE{
-	Kuis cepat ini bukan secangkir teh saya.
-	Apa yang bisa saya lakukan?
+	Kuis ini bukan untuk saya,
+	Jadi untuk apa?
 }\QuickQuizAnswerE{
-Berikut adalah beberapa strategi yang mungkin Kamu pertimbangkan:
+Berikut adalah beberapa strategi yang memungkinkan:
 
 \begin{enumerate}
 \item	Abaikan saja kuis cepat dan baca isi buku ini.
-	Kamu mungkin melewatkan materi yang menarik
+	Kamu mungkin melewatkan materi yang menarik dari
 	beberapa kuis cepat, tetapi sisa buku ini
 	memiliki banyak bahan bagus juga.
-	Ini adalah pendekatan yang sangat masuk akal jika utama Kamu
-	Tujuannya adalah untuk mendapatkan pemahaman umum tentang materi
+	Ini adalah pendekatan yang masuk akal jika tujuan utamamu
+	adalah untuk mendapatkan pemahaman umum tentang materi
 	atau jika Kamu membaca sekilas buku ini untuk menemukan
-	solusi untuk masalah tertentu.
+	solusi pada masalah spesifik.
 \item	Lihatlah jawaban segera setelah Kamu menyelesaikan kuis cepat.
 	Ini adalah pendekatan yang masuk akal jika kuis cepat
 	dalam suatu bab memiliki kunci untuk masalah yang Kamu
 	coba selesaikan.
-	Ini juga masuk akal jika Kamu ingin pemahaman yang sedikit lebih dalam
-	materi, tetapi ketika Kamu tidak berharap untuk diuji untuk
+	Pendekatan ini juga masuk akal jika Kamu ingin memiliki pemahaman materi yang lebih dalam,
+	tetapi ketika Kamu tidak berharap untuk diuji untuk
 	menghasilkan solusi yang sama diberikan hanya lembaran kosong.
 \item   Jika kamu menemukan kuis cepat yang mengganggu tetapi tidak mungkin
 	diabaikan, kamu bisa selalu mengkloning \LaTeX{} sumber untuk
@@ -273,7 +273,7 @@ benar-benar membutuhkan Kamu untuk berlatih menghasilkan kode.
 	apakah ada artinya???
 }\QuickQuizAnswer{
 	Bagi mereka yang lebih suka analogi, pemrograman perangkat lunak
-	bersamaan mirip dengan memainkan musik dalam hal banyak
+	konkuren mirip dengan memainkan musik dalam hal banyak
 	kegunaan yang baik untuk banyak tingkat keterampilan dan keterampilan.
 	Tidak semua orang perlu menghabiskan seluruh hidupnya menjadi
 	seorang pianis konser.
@@ -281,10 +281,10 @@ benar-benar membutuhkan Kamu untuk berlatih menghasilkan kode.
 	pianis yang lebih rendah yang musiknya disambut oleh teman-teman dan
 	keluarga mereka.
 	Tetapi pianis ini mungkin sedang melakukan sesuatu yang lain untuk
-	mendukung diri mereka sendiri, dan demikian pula dengan pemrograman bersamaan.
-	
+	mendukung diri mereka sendiri, dan demikian pula dengan pemrograman konkuren.
+
 	Satu potensi manfaat membaca secara pasif buku ini adalah kemampuan
-	membaca dan memahami kode bersamaan modern.
+	membaca dan memahami kode konkuren modern.
 	Kemampuan ini mungkin pada gilirannya memungkinkan Kamu untuk:
 
 	\begin{enumerate}
@@ -300,13 +300,13 @@ benar-benar membutuhkan Kamu untuk berlatih menghasilkan kode.
 
 	Jika Kamu adalah seorang pemrogram yang berpengalaman, membaca
 	buku ini secara pasif mungkin akan memungkinkan Kamu untuk
-	menggunakan teknik bersamaan modern dengan lebih baik.
-	
+	menggunakan teknik konkuren modern dengan lebih baik.
+
 	Dan akhirnya, jika pekerjaan Kamu adalah untuk mengkoordinasikan
-	kegiatan pengembang yang menggunakan teknik bersamaan modern,
+	kegiatan pengembang yang menggunakan teknik konkuren modern,
 	membaca buku ini secara pasif mungkin akan membantu Kamu
 	memahami apa yang mereka bicarakan.
-	
+
 }\QuickQuizEnd
 
 Saya belajar ini dengan cara yang keras selama tugas-tugas
@@ -345,15 +345,15 @@ lebih baik disajikan oleh buku lain.
 Untungnya, ada banyak alternatif yang tersedia untuk Kamu:
 
 \begin{enumerate}
-\item 	Jika kamu lebih suka pembelajaran yang lebih akademis dan ketat
-	pemrograman paralel, Kamu mungkin suka buku \pplsur{Maurice P.}{Herlihy}'s
+\item 	Jika kamu lebih suka pembelajaran yang lebih akademis dan kuat
+	dalam pemrograman paralel, Kamu mungkin akan menyukai buku \pplsur{Maurice P.}{Herlihy}'s
 	dan \pplsur{Nir}{Shavit}'s ~\cite{HerlihyShavit2008Textbook,HerlihyShavit2020Textbook}.
 	Buku ini dimulai dengan kombinasi yang menarik
-	primitif rendah tingkat tinggi abstraksi
-	dari perangkat keras, dan bekerja melalui kunci
+	mulai dari sederhana, rendah, tingkat tinggi sampai abstraksi
+	dari perangkat keras, kombinasi ini  bekerja melalui kunci
 	dan struktur data sederhana termasuk daftar, antrian,
 	tabel hash, dan penghitung, mencapai dengan transaksi
-	memory, semua dalam Java.
+	memory, semuanya dalam Java.
 	\pplsur{Michael}{Scott}'s buku teks~\cite{MichaelScott2013Textbook}
 	mengarahkan materi yang sama dengan lebih fokus pada
 	perangkat lunak, dan, sejauh yang saya tahu, adalah
@@ -367,7 +367,7 @@ Untungnya, ada banyak alternatif yang tersedia untuk Kamu:
 	dan \acr{rcu}, dengan yang terakhir dalam bentuk \acr{ebr} \@.
 	\footnote{
 		Meskipun merupakan implementasi yang berisi preemption pembaca
-			bug dicatat oleh \pplsur{Richard}{Bornat}.}
+			bug, dicatat oleh \pplsur{Richard}{Bornat}.}
 	Mereka juga mencakup sejarah singkat keduanya, meskipun dengan
 	sejarah singkat \acr{rcu} yang dipotong sekitar setahun setelah
 	\acr{rcu} diterima ke dalam kernel Linux dan lebih dari 20 tahun
@@ -383,13 +383,12 @@ Untungnya, ada banyak alternatif yang tersedia untuk Kamu:
 	Kalimat itu membaca ``QSBR [sebuah kelas tertentu dari
 	implementasi \acr{rcu}] cepat dan dapat diterapkan ke hampir
 	semua struktur data.''
-	Inilah bukanlah kata-kata seseorang yang tidak suka
+	Ini bukanlah kata-kata seseorang yang tidak suka
 	terhadap RCU.
-\item	Jika Kamu lebih suka pembelajaran yang lebih akademis 
+\item	Jika Kamu lebih suka pembelajaran yang lebih akademis
 	pemrograman paralel dari sudut pandang pemrograman\-/bahasa\-/pragmatika,
-	Kamu mungkin tertarik pada bab paralelisme dari
-	\pplsur{Michael}{Scott}'s
-	buku teks~\cite{MichaelScott2006Textbook,MichaelScott2015Textbook}
+	Kamu mungkin tertarik pada bab paralelisme dari teks buku
+	\pplsur{Michael}{Scott}'s ~\cite{MichaelScott2006Textbook,MichaelScott2015Textbook}
 	pemrograman bahasa pragmatika.
 \item	Jika Kamu tertarik pada pola-pola objek-orientasi
 	pemrograman paralel yang fokus pada C++,
@@ -397,58 +396,58 @@ Untungnya, ada banyak alternatif yang tersedia untuk Kamu:
 	series~\cite{SchmidtStalRohnertBuschmann2000v2Textbook,
 	BuschmannHenneySchmidt2007v4Textbook}.
 	Volume~4 khususnya memiliki beberapa bab menarik
-	menerapkan pekerjaan ini ke aplikasi gudang.
+	menerapkan pekerjaan ini ke aplikasi {\it warehouse}.
 	Realisme contoh ini dibuktikan oleh
 	bagian yang berjudul ``Partitioning the Big Ball of Mud'',
-	dalam hal masalah inherent dalam paralelisme seringkali
-	mengambil tempat kedua untuk mendapatkan kepala kita
-	untuk mengatasi aplikasi dunia nyata.
+	dalam hal masalah sifat yang permanen dalam paralelisme seringkali
+	mengambil tempat kedua untuk membuat kita berfikir
+	agar bisa menyelesaikan aplikasi di dunia nyata.
 \item	Jika Kamu ingin bekerja dengan perangkat keras Linux,
 	maka \pplsur{Jonathan}{Corbet}'s, \pplsur{Alessandro}{Rubini}'s,
 	dan \pplsur{Greg}{Kroah-Hartman}'s
 	``Linux Device Drivers''~\cite{CorbetRubiniKroahHartman}
-	adalah tidak tergantikan, sebagaimana juga situs web Linux Weekly News
+	ini tidak tergantikan, sebagaimana juga situs web Linux Weekly News
 	(\url{https://lwn.net/}).
 	Terdapat banyak buku dan sumber daya lainnya
 	terkait topik yang lebih umum tentang inti Linux.
 \item	Jika Kamu tertarik pada pemrograman paralel yang
 	terfokus pada komputasi ilmiah dan teknis,
-	maka Kamu mungkin mencoba buku teks \pplsur{Timothy G.}{Mattson} et al.~\cite{Mattson2005Textbook}.
+	maka Kamu mungkin dapat mencoba buku teks  dari \pplsur{Timothy G.}{Mattson} et al.~\cite{Mattson2005Textbook}.
 	Buku teks ini membahas Java, C/C++, OpenMP, dan MPI\@.
 	Pola-pola yang ditawarkan sangat fokus pada desain
 	dan implementasi.
 \item	Jika fokus utama kamu adalah komputasi ilmiah dan teknis,
 	dan kamu tertarik pada GPU, CUDA, dan MPI,
-	maka Kamu mungkin mencoba buku teks \pplsur{Norman L.}{Matloff}~\cite{NormMatloff2017ParProcBook}.
+	maka Kamu mungkin dapat mencoba buku teks dari \pplsur{Norman L.}{Matloff}~\cite{NormMatloff2017ParProcBook}.
 	Begitu juga dengan vendor GPU yang
 	memiliki banyak informasi tambahan~\cite{AMD2020ROCm,CyrilZeller2011GPGPUbasics,NVidia2017GPGPU,NVidia2017GPGPU-university}.
-\item	Jika Kamu tertarik pada POSIX Threads, Kamu mungkin
-	melihat \pplsur{David R.}{Butenhof}'s buku~\cite{Butenhof1997pthreads}.
+\item	Jika Kamu tertarik pada {\it POSIX Threads}, Kamu mungkin bisa
+	melihat buku \pplsur{David R.}{Butenhof}'s ~\cite{Butenhof1997pthreads}.
 	Dalam tambahan,
-	\pplsur{W.~Richard}{Stevens}'s buku~\cite{WRichardStevens1992,WRichardStevens2013}
+	buku \pplsur{W.~Richard}{Stevens}'s ~\cite{WRichardStevens1992,WRichardStevens2013}
 	mengulas UNIX dan POSIX, dan \pplsur{Stewart}{Weiss}'s catatan kuliah
 	~\cite{StewartWeiss2013UNIX} memberikan
 	pengantar yang mendalam dan mudah diakses dengan set contoh yang baik.
-\item	Jika Kamu tertarik pada C++11, Kamu mungkin tertarik pada
+\item	Jika Kamu tertarik pada C++11, Kamu mungkin akan tertarik pada buku
 	\pplsur{Anthony}{Williams}'s ``C++ Concurrency in Action:
 	Practical Multithreading''~\cite{AnthonyWilliams2012,AnthonyWilliams2019}.
 \item 	Jika Kamu tertarik pada C++, tapi dalam lingkungan Windows,
-	maka Kamu mungkin mencoba \ppl{Herb}{Sutter}'s ``Effective Concurrency''
+	maka Kamu bisa mencoba \ppl{Herb}{Sutter}'s ``Effective Concurrency''
 	series di
 	Dr.~Dobbs Journal~\cite{HerbSutter2008EffectiveConcurrency}.
 	Seri ini melakukan pekerjaan yang wajar dalam mempresentasikan
-	pendekatan yang masuk akal terhadap paralelisme.
-\item	Jika kamu ingin mencoba Intel Threading Building Blocks,
-	maka mungkin buku \ppl{James}{Reinders}'s~\cite{Reinders2007Textbook}
+	bagian yang masuk akal terhadap paralelisme.
+\item	Jika kamu ingin mencoba {\it Intel Threading Building Blocks},
+	maka buku \ppl{James}{Reinders}'s~\cite{Reinders2007Textbook}
 	adalah yang Kamu cari.
-\item	Mereka yang tertarik mempelajari bagaimana berbagai jenis multi-prosesor
-	perangkat keras
-	organisasi cache mempengaruhi implementasi inti
-	perlu memeriksa \ppl{Curt}{Schimmel}'s klasik
+\item	Mereka yang tertarik mempelajari bagaimana berbagai jenis {\it multi-prosesor
+	hardware cache}
+	organisasi ini mempengaruhi implementasi inti
+	kamu perlu memeriksa \ppl{Curt}{Schimmel}'s klasik
 	pemrosesan topik ini~\cite{Schimmel:1994:USM:175689}.
 \item 	Jika kamu mencari tampilan perangkat keras,
-	maka \pplsur{John L.}{Hennessy}'s dan \pplsur{David A.}{Patterson}'s
-	klasik teks~\cite{Hennessy2017,Hennessy2011} sangat layak dibaca.
+	maka teks klasik dari \pplsur{John L.}{Hennessy}'s dan \pplsur{David A.}{Patterson}'s
+	~\cite{Hennessy2017,Hennessy2011} sangat layak dibaca.
 	Versi ``Readers Digest'' dari teks ini yang berfokus pada
 	pekerjaan ilmiah dan teknis (menghancurkan array besar)
 	mungkin ditemukan dalam buku teks \ppl{Andrew}{Chien}'s
@@ -457,13 +456,13 @@ Untungnya, ada banyak alternatif yang tersedia untuk Kamu:
 	dari sudut pandang yang lebih hardware-orientasi,
 	yang ditulis oleh \ppl{Daniel}{Sorin} et al.~\cite{DanielJSorin2011MemModel,%
 	VijayNagarajan2020MemModel}
-	dianjurkan.
+	sangat dianjurkan.
 	Untuk tutorial pengurutan memori dari sudut pandang Linux-kernel,
 	\ppl{Paolo}{Bonzini}' Seris LWN adalah tempat yang baik untuk
-	mulai~\cite{PaoloBonzini2021lockless1,PaoloBonzini2021lockless2,PaoloBonzini2021lockless3,PaoloBonzini2021lockless4,PaoloBonzini2021lockless5,PaoloBonzini2021lockless6}.
+	mulai ~\cite{PaoloBonzini2021lockless1,PaoloBonzini2021lockless2,PaoloBonzini2021lockless3,PaoloBonzini2021lockless4,PaoloBonzini2021lockless5,PaoloBonzini2021lockless6}.
 \item 	Akhirnya, mereka yang menggunakan Java mungkin akan
-	dilayani dengan baik oleh \ppl{Doug}{Lea}'s
-	buku teks~\cite{DougLea1997Textbook,Goetz2007Textbook}.
+	dilayani dengan baik oleh buku \ppl{Doug}{Lea}'S
+	~\cite{DougLea1997Textbook,Goetz2007Textbook}.
 \end{enumerate}
 
 Namun, jika Kamu tertarik pada prinsip-prinsip desain paralel
@@ -521,7 +520,7 @@ di berkas \path{FAQ-BUILD.txt} di sumber \LaTeX{} buku ini.
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/perfbook.git
 cd perfbook
 # Kamu mungkin harus menginstall font. Lihat item 1 di FAQ.txt.
-make                     # -jN untuk pararel build
+make                     # -jN untuk paralel build
 evince perfbook.pdf &    # Versi dua kolom
 make perfbook-1c.pdf
 evince perfbook-1c.pdf & # Versi satu kolom (lebih mudah dibaca e-reader)
@@ -548,7 +547,7 @@ dalam direktori \path{perfbook} yang dibuat oleh perintah yang ditunjukkan di
 \begin{VerbatimL}[numbers=none,xleftmargin=0pt]
 git remote update
 git checkout origin/master
-make                     # -jN Untuk pararel build
+make                     # -jN Untuk paralel build
 evince perfbook.pdf &    # Versi dua kolom
 make perfbook-1c.pdf
 evince perfbook-1c.pdf & # Versi satu kolom (lebih mudah dibaca e-reader)
@@ -576,7 +575,7 @@ Signed-off-by: Nama ku <namaku@example.org>
 Tolong lihat \url{https://lkml.org/lkml/2007/1/15/219} untuk contoh patch
 dengan baris \co{Signed-off-by:}.
 Perhatikan bahwa baris \co{Signed-off-by:} memiliki makna yang sangat
-spesifik, yaitu bahwa Kamu menyatakan bahwa:
+spesifik, yaitu bahwa Kamu menyatakan:
 
 \begin{enumerate}[label={(\alph*)}]
 \item 	Kontribusi yang dibuat sepenuhnya atau sebagian besar oleh Kamu
@@ -602,11 +601,11 @@ spesifik, yaitu bahwa Kamu menyatakan bahwa:
 
 Ini sangat mirip dengan Sertifikat Pengembang (DCO) versi 1.1 yang
 digunakan kernel Linux.
-Kamu harus menggunakan nama asli Kamu:
+Kamu harus menggunakan nama aslimu:
 Sayangnya, saya tidak dapat menerima kontribusi yang tidak memiliki nama
 asli atau anonim.
 
-Bahasa buku ini adalah bahasa Inggris Amerika, namun, sifat open-source
+Bahasa buku ini dibuat dalam bahasa Inggris Amerika, namun, sifat open-source
 dari buku ini memungkinkan terjadinya terjemahan, dan saya pribadi
 menghargainya.
 Lisensi open-source yang melindungi buku ini juga memungkinkan Kamu
@@ -632,4 +631,3 @@ Dalam semangat itu, saya menawarkan \cref{chp:Introduction}, bagian
 pengantar kami.
 
 \QuickQuizAnswersChp{qqzhowto}
-
