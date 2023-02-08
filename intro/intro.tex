@@ -4,241 +4,205 @@
 
 \QuickQuizChapter{chp:Introduction}{Introduction}{qqzintro}
 %
-\Epigraph{If parallel programming is so hard, why are there so many
-	  parallel programs?}{Unknown}
+\Epigraph{Jika pemrograman paralel itu sulit, mengapa ada begitu banyak program
+	  paralel?}{Tidak diketahui}
 
-Parallel programming has earned a reputation as one of the most
-difficult areas a hacker can tackle.
-Papers and textbooks warn of the perils of \IX{deadlock}, \IX{livelock},
-\IXpl{race condition}, non-determinism,
-\IXaltr{Amdahl's-Law}{Amdahl's Law} limits to scaling,
-and excessive realtime latencies.
-And these perils are quite real; we authors have accumulated uncounted
-% 2020:
-%	30 for Paul E. McKenney
-years of experience along with the resulting emotional scars,
-grey hairs, and hair loss.
+Pemrograman paralel telah mendapatkan reputasi sebagai salah satu area tersulit
+yang bisa ditangain oleh para hacker. Makalah dan buku-buku memberi peringatan
+tentang bahaya \IX{deadlock}, \IX{livelock}, \IXpl{race condition},
+non-determinisme, batasan \IXaltr{Amdahl's-Law}{Amdahl's Law} untuk skala, dan
+latensi waktu nyata yang berlebihan. Dan bahaya-bahaya ini benar-benar nyata;
+kami penulis telah mengumpulkan
+% 2020: 30 for Paul E. McKenney
+pengalaman yang tidak terhitung jumlahnya selama bertahun-tahun, bersama dengan
+luka-luka emosional dan rambut rontok.
 
-However, new technologies that are difficult to use at introduction
-invariably become easier over time.
-For example, the once-rare ability to drive a car is now
-commonplace in many countries.
-This dramatic change came about for two basic reasons:
+Namun, teknologi baru yang sulit digunakan saat pengenalan selalu cakap menjadi
+lebih mudah dari waktu ke waktu. Sebagai contoh, kemampuan untuk mengendarai
+mobil yang dulunya langka kini menjadi lumrah di banyak negara. Perubahan
+dramatis ini terjadi karena dua alasan dasar:
 \begin{enumerate*}[(1)]
-\item Cars became cheaper and more readily available, so that
-more people had the opportunity to learn to drive, and
-\item Cars became easier to operate due to automatic transmissions,
-automatic chokes, automatic starters, greatly improved reliability,
-and a host of other technological improvements.
+\item Mobil menjadi lebih murah dan mudah didapatkan, sehingga lebih banyak
+orang memiliki kesempatan untuk belajar mengendarai, dan
+\item Mobil menjadi lebih mudah untuk dioperasikan karena transmisi otomatis,
+pengisian bahan bakar otomatis, pengapian otomatis, keandalan yang sangat
+ditingkatkan, dan sejumlah perbaikan teknologi lainnya.
 \end{enumerate*}
 
-The same is true for many other technologies, including computers.
-It is no longer necessary to operate a keypunch in order to program.
-Spreadsheets allow most non-programmers to get results from their computers
-that would have required a team of specialists a few decades ago.
-Perhaps the most compelling example is web-surfing and content creation,
-which since the early 2000s has been easily done by
-untrained, uneducated people using various now-commonplace
-social-networking tools.
-As recently as 1968, such content creation was a far-out research
-project~\cite{DouglasEngelbart1968}, described at
-the time as
-``like a UFO landing on the White House lawn''~\cite{ScottGriffen2000}.
+Hal yang sama berlaku untuk banyak teknologi lain, termasuk komputer. Tidak lagi
+diperlukan mesin ketik untuk mengoperasikan komputer. Spreadsheet memungkinkan
+sebagian besar orang yang tidak berpengalaman untuk mendapatkan hasil dari
+komputer yang membutuhkan tim spesialis beberapa dekade lalu. Contoh yang paling
+menarik adalah web-surfing dan pembuatan konten, yang sejak awal 2000-an dapat
+dilakukan dengan mudah oleh orang-orang yang tidak terlatih, tidak berpendidikan
+menggunakan berbagai peralatan jejaring sosial yang sekarang sudah umum.
+Baru-baru ini, pada tahun 1968, pembuatan konten semacam itu merupakan
+proyek~\cite{DouglasEngelbart1968} penelitian yang jauh, yang pada saat itu
+dijelaskan sebagai ``seperti pendaratan UFO di halaman gedung
+putih''~\cite{ScottGriffen2000}.
 % http://www.ibiblio.org/pioneers/engelbart.html
 % http://www.histech.rwth-aachen.de/www/quellen/engelbart/ahi62index.html
 
-Therefore, if you wish to argue that parallel programming will remain
-as difficult as it is currently perceived by many to be, it is you
-who bears the burden of proof, keeping in mind the many centuries of
-counter-examples in many fields of endeavor.
+Oleh karena itu, jika Kamu ingin berpendapat bahwa pemrograman paralel akan
+tetap sesulit yang dirasakan oleh banyak orang saat ini, kamu yang akan
+menanggung beban pembuktian, harus diingat bahwa contoh tandingnya selama
+berabad-abad di banyak di bidang usaha.
 
 \section{Historic Parallel Programming Difficulties}
 \label{sec:intro:Historic Parallel Programming Difficulties}
 %
-\epigraph{Not the power to remember, but its very opposite, the power to
-	  forget, is a necessary condition for our existence.}
-	 {Sholem Asch}
+\epigraph{Bukan kekuatan untuk mengingat, tetapi kebalikannya, kekuatan untuk
+	  melupakan, yang merupakan syarat utama keberadaan kita.} {Sholem Asch}
 
-As indicated by its title, this book takes a different approach.
-Rather than complain about the difficulty of parallel programming,
-it instead examines the reasons why parallel programming is
-difficult, and then works to help the reader to overcome these
-difficulties.
-As will be seen, these difficulties have historically fallen into several
-categories, including:
+Sesuai dengan judulnya, buku ini mengambil pendekatan yang berbeda. Alih-alih
+mengeluh tentang kesulitan pemrograman paralel, ia malah meneliti alasan mengapa
+pemrograman paralel sulit, dan kemudian bekerja membantu pembaca mengatasi
+kesulitan tersebut. Seperti yang akan terlihat, kesulitan historis ini terbagi
+ke dalam beberapa kategori, termasuk:
 
 \begin{enumerate}
-\item	The historic high cost and relative rarity of parallel systems.
-\item	The typical researcher's and practitioner's lack of experience
-	with parallel systems.
-\item	The paucity of publicly accessible parallel code.
-\item	The lack of a widely understood engineering discipline of
-	parallel programming.
-\item	The high \IX{overhead} of communication relative to that of processing,
-	even in tightly coupled shared-memory computers.
+\item	Harga tinggi dan kejaran yang relatif langka sistem paralel.
+\item 	Kurangnya pengalaman peneliti dan praktisi dengan sistem pararel
+\item 	Kurangnya kode paralel yang dapat diakses publik.
+\item 	Kurangnya disiplin teknik pemrograman paralel yang dipahami secara luas.
+\item 	{\it overhead} komunikasi yang tinggi relatif terhadap pemrosesan,
+	bahkan di komputer shared-memori yang dipasangkan dengan erat.
 \end{enumerate}
 
-Many of these historic difficulties are well on the way to being overcome.
-First, over the past few decades, the cost of parallel systems
-has decreased from many multiples of that of a house to that of a
-modest meal, courtesy of \IXr{Moore's Law}~\cite{GordonMoore1965MooresLaw}.
-Papers calling out the advantages of multicore CPUs were published
-as early as 1996~\cite{Olukotun96}.
-IBM introduced simultaneous multi-threading
-into its high-end \Power{} family in 2000, and multicore in 2001.
-Intel introduced hyperthreading into its commodity Pentium line in
-November 2000, and both AMD and Intel introduced
-dual-core CPUs in 2005.
-Sun followed with the multicore/multi-threaded Niagara in late 2005.
-In fact, by 2008, it was becoming difficult
-to find a single-CPU desktop system, with single-core CPUs being
-relegated to netbooks and embedded devices.
-By 2012, even smartphones were starting to sport multiple CPUs.
-By 2020, safety-critical software standards started addressing
-concurrency.
+Banyak dari sejarah kesulitan ini sedang berjalan menuju penyelesaian. Pertama,
+selama beberapa dekade terakhir, biaya sistem paralel telah menurun dari banyak
+kali lipat dari biaya sebuah rumah ke biaya sebuah makanan yang murah, karena
+\IXr{Moore's Law}~\cite{GordonMoore1965MooresLaw}.
+Makalah yang memanggil keuntungan sistem CPU multi-core telah diterbitkan sejak
+1996~\cite{Olukotun96}. IBM memperkenalkan multi-threading simultan ke dalam
+keluarga \Power{} mereka pada tahun 2000, dan multi-core pada tahun 2001. Intel
+memperkenalkan hyperthreading ke dalam barisan komoditas Pentium pada November
+2000, dan baik AMD maupun Intel memperkenalkan CPU dual-core pada tahun 2005.
+Sun mengikuti dengan multi-core/multi-threaded Niagara pada akhir 2005.
+Faktanya, pada tahun 2008, mulai sulit untuk menemukan desktop dengan satu CPU,
+dengan CPU single-core ditempatkan pada netbook dan perangkat terintegrasi. Pada
+tahun 2012, bahkan smartphone mulai dilengkapi dengan multi-core CPU. Pada tahun
+2020, standar krisis keamanaan mulai menangani konkuren.
 
-Second, the advent of low-cost and readily available multicore systems
-means that the once-rare experience of parallel programming is
-now available to almost all researchers and practitioners.
-In fact, parallel systems have long been within the budget of students
-and hobbyists.
-We can therefore expect greatly increased levels of invention and
-innovation surrounding parallel systems, and that increased familiarity
-will over time make the once prohibitively expensive field of parallel
-programming much more friendly and commonplace.
+Kedua, kemunculan sistem multi-core dengan biaya yang murah dan mudah diperoleh
+berarti bahwa pengalaman yang dulunya langka dalam pemrograman paralel kini
+tersedia untuk hampir semua peneliti dan praktisi. Faktanya, sistem paralel
+telah lama berada dalam anggaran mahasiswa penghobi. Oleh karena itu, kami
+mengharapkan tingkat penemuan dan inovasi yang tinggi disekitar sistem paralel.
+dan meningkatkan keakraban dari waktu ke waktu akan membuat bidang pemrograman
+paralel yang dulunya mahal menjadi jauh lebih ramah dan biasa.
 
-Third, in the 20\textsuperscript{th} century, large systems of
-highly parallel software were almost always closely guarded proprietary
-secrets.
-In happy contrast, the 21\textsuperscript{st} century has seen numerous
-open-source (and thus publicly available) parallel software projects,
-including the Linux kernel~\cite{Torvalds2.6kernel},
-database systems~\cite{PostgreSQL2008,MySQL2008},
-and message-passing systems~\cite{OpenMPI2008,BOINC2008}.
-This book will draw primarily from the Linux kernel, but will
-provide much material suitable for user-level applications.
+Ketiga, pada abad ke-20, sistem paralel yang besar dan sangat paralel hampir
+selalu dijaga ketat rahasia kepemilikannya. Sebaliknya, abad ke-21 telah melihat
+banyak proyek perangkat lunak paralel open-source (dan demikian dapat diakses
+publik), termasuk kernel Linux~\cite{Torvalds2.6kernel}, sistem
+database~\cite{PostgreSQL2008,MySQL2008}, dan sistem
+pesan~\cite{OpenMPI2008,BOINC2008}. Buku ini akan mengambil kernel Linux sebagai
+contoh utama, tetapi akan memberikan banyak materi yang cocok untuk aplikasi
+user-level.
 
-Fourth, even though the large-scale parallel\-/programming projects of
-the 1980s and 1990s were almost all proprietary projects, these
-projects have seeded other communities with cadres of developers who
-understand the engineering discipline required to develop production-quality
-parallel code.
-A major purpose of this book is to present this engineering discipline.
+Keempat, meskipun proyek-proyek pemrograman paralel skala besar pada 1980-an dan
+1990-an hampir selalu merupakan proyek berpemilik. proyek-proyek ini telah
+menanamkan komunitas lain dengan kader pengembang yang memahami disiplin teknik
+yang diperlukan untuk mengembangkan kode paralel berkualitas produksi.
 
-Unfortunately, the fifth difficulty, the high cost of communication
-relative to that of processing, remains largely in force.
-This difficulty has been receiving increasing attention during
-the new millennium.
-However, according to \ppl{Stephen}{Hawking},
-the finite speed of light and the atomic
-nature of matter will limit progress in this
-area~\cite{BryanGardiner2007,GordonMoore03a}.
-Fortunately, this difficulty has been in force since the late 1980s,
-so that the aforementioned engineering discipline has evolved practical
-and effective strategies for handling it.
-In addition, hardware designers are increasingly aware of these issues,
-so perhaps future hardware will be more friendly to parallel software,
-as discussed in \cref{sec:cpu:Hardware Free Lunch?}.
+Sayangnya, kesulitan kelima, biaya komunikasi yang relatif tinggi terhadap biaya
+pemrosesan, masih berlaku. Kesulitan ini telah menerima perhatian yang semakin
+meningkat selama abad ke-21. Namun, menurut \ppl{Stephen}{Hawking}, kecepatan
+cahaya yang terbatas dan bentuk atomik dari materi akan membatasi kemajuan di
+bidang ini~\cite{BryanGardiner2007,GordonMoore03a}. Sayangnya, kesulitan ini
+telah berlaku sejak akhir 1980-an, sehingga disiplin ilmu teknik yang telah
+dikembangkan untuk mengatasi kesulitan ini telah berkembang menjadi praktis dan
+efektif. Selain itu, desainer perangkat keras semakin sadar akan masalah ini,
+Jadi mungkin perangkat keras di masa depan akan lebih ramah terhadap perangkat
+lunak paralel, seperti yang dibahas dalam \cref{sec:cpu:Hardware Free Lunch?}.
 
 \QuickQuiz{
-	Come on now!!!
-	Parallel programming has been known to be exceedingly
-	hard for many decades.
-	You seem to be hinting that it is not so hard.
-	What sort of game are you playing?
+	Ayolah!!!
+	Pemrograman paralel telah dikenal sebagai sesuatu yang sangat sulit sejak
+	beberapa dekade. Kamu tampaknya mengindikasikan bahwa itu tidak begitu
+	sulit. Apa jenis permainan yang kamu mainkan?
 }\QuickQuizAnswer{
-	If you really believe that parallel programming is exceedingly
-	hard, then you should have a ready answer to the question
-	``Why is parallel programming hard?''
-	One could list any number of reasons, ranging from deadlocks to
-	race conditions to testing coverage, but the real answer is that
-	{\em it is not really all that hard}.
-	After all, if parallel programming was really so horribly difficult,
-	how could a large number of open-source projects, ranging from Apache
-	to MySQL to the Linux kernel, have managed to master it?
+	Jika kamu benar-benar percaya bahwa pemrograman paralel sangat sulit, maka
+	kamu harus memiliki jawaban yang siap untuk pertanyaan ``Kenapa pemrograman
+	paralel sulit?'' Seseorang dapat mencantumkan sejumlah alasan, mulai dari
+	jalan buntu hingga konflik akses, tetapi jawaban yang sebenarnya adalah
+	bahwa {\em itu tidak begitu sulit}. Sebagai contoh, jika pemrograman paralel
+	benar-benar begitu sulit, mengapa banyak proyek open-source, mulai dari
+	Apache hingga MySQL hingga kernel Linux, dapat menguasainya?
 
-	A better question might be:
-	``Why is parallel programming \emph{perceived} to be so difficult?''
-	To see the answer, let's go back to the year 1991.
-	Paul McKenney was walking across the parking lot to Sequent's
-	benchmarking center carrying six dual-80486 Sequent Symmetry CPU
-	boards, when he suddenly realized that he was carrying several
-	times the price of the house he had just purchased.\footnote{
-		Yes, this sudden realization {\em did} cause him to walk quite
-		a bit more carefully.
-		Why do you ask?}
-	This high cost of parallel systems meant that
-	parallel programming was restricted to a privileged few who
-	worked for an employer who either manufactured or could afford to
-	purchase machines costing upwards of \$100,000---in 1991 dollars US.
+	Pertanyaan yang lebih baik mungkin bisa jadi: ``Kenapa pemrograman paralel
+	\emph{dipersepsikan} sebagai sesuatu yang sulit?''
+	Untuk melihat jawabannya, mari kita kembali ke tahun 1991. Paul McKenney
+	sedang berjalan-jalan di parkiran sebuah toko menuju ke Pusat benchmarking
+	membawa enam board CPU dual-80486 Sequent Symmetry. dan dia mulai menyadari
+	bahwa dia membawa beberapa kali lipat harga rumah yang baru saja ia beli.
+	\footnote{Ya, kesadaran yang datang secara tiba-tiba ini membuat dia
+		berjalan lebih hati-hati.
+		Mengapa kamu bertanya?}
+	Biaya sistem paralel yang tinggi
+	Pemrograman paralel dibatasi untuk beberapa orang yang istimewa
+	bekerja untuk perusahaan yang memproduksi atau mampu
+	Membeli mesih seharga lebih dari \$100.000---pada tahun 1991 dolar AS.
 
-	In contrast, in 2020, Paul finds himself typing these words on a
-	six-core x86 laptop.
-	Unlike the dual-80486 CPU boards, this laptop also contains
-	64\,GB of main memory, a 1\,TB solid-state disk, a display, Ethernet,
-	USB ports, wireless, and Bluetooth.
-	And the laptop is more than an order of magnitude cheaper than
-	even one of those dual-80486 CPU boards, even before taking inflation
-	into account.
+	Secara kontras, pada tahun 2020, Paul mengetik kata-kata ini pada laptop
+	x86 berjaringan 6-core. Tidak seperti board CPU dual-80486, laptop ini
+	juga berisi 64\,GB memori utama, disk solid-state 1\,TB, tampilan,
+	Ethernet, port USB, wireless, dan Bluetooth. Dan laptop ini jauh lebih murah
+	daripada satu board CPU dual-80486, bahkan sebelum memperhitungkan inflasi.
 
-	Parallel systems have truly arrived.
-	They are no longer the sole domain of a privileged few, but something
-	available to almost everyone.
+	Sistem paralel telah benar-benar tiba.
+	Mereka tidak lagi menjadi domain yang dikuasai oleh sekelompok orang
+	istimewa, tetapi sesuatu yang tersedia untuk hampir semua orang.
 
-	The earlier restricted availability of parallel hardware is
-	the \emph{real} reason that parallel programming is considered
-	so difficult.
-	After all, it is quite difficult to learn to program even the simplest
-	machine if you have no access to it.
-	Since the age of rare and expensive parallel machines is for the most
-	part behind us, the age during which
-	parallel programming is perceived to be mind-crushingly difficult is
-	coming to a close.\footnote{
-		Parallel programming is in some ways more difficult than
-		sequential programming, for example, parallel validation
-		is more difficult.
-		But no longer mind-crushingly difficult.}
+	Ketersediaan yang terbatas dari perangkat keras paralel adalah
+	\emph{alasan sebenarnya} bahwa pemrograman paralel dianggap sulit.
+	Begitu sulit untuk belajar untuk memprogram mesin yang paling sederhana
+	jika kamu tidak memiliki akses ke mesin itu.
+	Semenjak usia mesin paralel yang langka dan mahal telah menjadi masa lalu,
+	usia ketika pemrograman paralel dianggap sangat sulit akan segera berakhir.
+	\footnote{
+		Pemrograman paralel dalam beberapa hal lebih sulit daripada
+		pemrograman berurutan, misalnya, validasi paralel lebih sulit.
+		Tetapi tidak lagi sangat sulit.}
 }\QuickQuizEnd
 
-However, even though parallel programming might not be as hard as
-is commonly advertised, it is often more work than is sequential
-programming.
+Tetapi, mesikipun pemrograman paralel tidak sepeti yang dipersepsikan, itu
+tetap membutuhkan banyak kerja. Pemrograman paralel tidak lebih sulit daripada
+pemrograman berurutan.
 
 \QuickQuiz{
-	How could parallel programming \emph{ever} be as easy
-	as sequential programming?
+	Bagaimana permrograman paralel \emph{bisa} lebih mudah daripada pemrograman
+	berurutan?
 }\QuickQuizAnswer{
-	It depends on the programming environment.
-	SQL~\cite{DIS9075SQL92} is an underappreciated success
-	story, as it permits programmers who know nothing about parallelism
-	to keep a large parallel system productively busy.
-	We can expect more variations on this theme as parallel
-	computers continue to become cheaper and more readily available.
-	For example, one possible contender in the scientific and
-	technical computing arena is MATLAB*P,
-	which is an attempt to automatically parallelize common
-	matrix operations.
+	Ini bergantung pada lingkungan pemrograman. SQL~\cite{DIS9075SQL92} adalah
+	sukses yang kurang dihargai, sebagai contoh, memungkinkan programmer yang
+	tidak tahu apa-apa tentang paralelisme untuk menjaga sistem paralel yang
+	besar tetap produktif. Kami dapat mengharapkan variasi lebih lanjut pada
+	tema ini selama komputer paralel terus menjadi lebih murah dan mudah
+	didapatkan. Sebagai contoh, salah satu pesaing yang mungkin di bidang ilmu
+	dan teknik ilmiah adalah MATLAB*P, yang merupakan upaya untuk secara
+	otomatis memparalelkan operasi matriks umum.
 
-	Finally, on Linux and UNIX systems, consider the following
-	shell command:
+	Akhirnya, di Linux dan UNIX, pertimbangkan perintah shell berikut:
 
 	\begin{VerbatimU}
 	get_input | grep "interesting" | sort
 	\end{VerbatimU}
 
-	This shell pipeline runs the \co{get_input}, \co{grep},
-	and \co{sort} processes in parallel.
-	There, that wasn't so hard, now was it?
+	Pipeline ini memproses data yang masuk dari \co{get_input} dan mengirimkan
+	hasilnya ke \co{grep} dan \co{sort} di proses didalam paralel.
+	Bagaimana, itu tidak terlalu sulit, bukan?
 
-	In short, parallel programming is just as easy as sequential
-	programming---at least in those environments that hide the parallelism
-	from the user!
+	Secara singkat, pemrograman paralel sama mudahnya dengan pemrograman
+	berurutan---setidaknya dalam lingkungan yang menyembunyikan paralelisme
+	dari pengguna!
 }\QuickQuizEnd
 
-It therefore makes sense to consider alternatives to parallel programming.
-However, it is not possible to reasonably consider parallel-programming
-alternatives without understanding parallel-programming goals.
-This topic is addressed in the next section.
+Oleh karena itu, itu masuk akal untuk mempertimbangkan alternatif dari
+pemrograman paralel. Namun, tidak mungkin untuk mempertimbangkan alternatif
+pemrograman paralel tanpa memahami tujuan pemrograman paralel. Topik ini dibahas
+pada bagian berikut.
 
 \section{Parallel Programming Goals}
 \label{sec:intro:Parallel Programming Goals}
@@ -246,99 +210,91 @@ This topic is addressed in the next section.
 \epigraph{If you don't know where you are going, you will end up somewhere
 	  else.}{Yogi Berra}
 
-The three major goals of parallel programming (over and above those
-of sequential programming) are as follows:
+Tiga tujuan utama pemrograman paralel (di atas dan di luar tujuan
+pemrograman berurutan) adalah sebagai berikut:
 
 \begin{enumerate}
-\item	\IX{Performance}.
-\item	\IX{Productivity}.
-\item	\IX{Generality}.
+\item	\IX{Kinerja}.
+\item	\IX{Produktivitas}.
+\item	\IX{Umum}.
 \end{enumerate}
 
-Unfortunately, given the current state of the art, it is possible to
-achieve at best two of these three goals for any given parallel program.
-These three goals therefore form the \emph{iron triangle of parallel
-programming},
-a triangle upon which overly optimistic hopes all too often come to
-grief.\footnote{
-	Kudos to Michael Wong for naming the iron triangle.}
+Sayangnya, mengingat keadaan seni saat ini, mungkin hanya dua dari tiga tujuan
+ini yang dapat dicapai untuk setiap program paralel. Tujuan-tujuan ini
+maka menjadi segitiga \emph{besi} dari pemrograman paralel, segitiga yang
+pada akhirnya akan menyebabkan harapan yang terlalu optimis hancur.\footnote{
+	Kudos untuk Michael Wong yang telah memberi nama segitiga besi.}
 
 \QuickQuizSeries{%
 \QuickQuizB{
-	Oh, really???
-	What about correctness, maintainability, robustness, and so on?
+	Oh, yang benar???
+	Bagaimana dengan kebenaran, keterjangkauan, ketahanan, dan lain-lain?
 }\QuickQuizAnswerB{
-	These are important goals, but they are just as important for
-	sequential programs as they are for parallel programs.
-	Therefore, important though they are, they do not belong on
-	a list specific to parallel programming.
+	Ini adalah tujuan penting, tetapi sama pentingnya untuk program
+	berurutan. Oleh karena itu, penting meskipun mereka, mereka tidak
+	terdapat pada daftar khusus pemrograman paralel.
 }\QuickQuizEndB
 %
 \QuickQuizM{
-	And if correctness, maintainability, and robustness don't
-	make the list, why do productivity and generality?
+	Dan jika kebenaran, keterjangkauan, dan ketahanan tidak ada di daftar,
+	kenapa produktivitas dan umum?
 }\QuickQuizAnswerM{
-	Given that parallel programming is perceived to be much harder
-	than sequential programming, productivity is tantamount and
-	therefore must not be omitted.
-	Furthermore, high-productivity parallel-programming environments
-	such as SQL serve a specific purpose, hence generality must
-	also be added to the list.
+	Mengingat bahwa pemrograman paralel dianggap lebih sulit dari pemrograman
+	berurutan, produktivitas sama dan Oleh karena itu tidak boleh dihilangkan.
+	Selanjutnya, jika lingkungan pemrograman paralel dengan produktivitas yang
+	tinggi seperti SQL melayani tujuan tertentu, maka umumnya harus juga
+	ditambahkan ke daftar.
 }\QuickQuizEndM
 %
 \QuickQuizM{
-	Given that parallel programs are much harder to prove
-	correct than are sequential programs, again, shouldn't
-	correctness \emph{really} be on the list?
+	Mengingat bahwa program paralel jauh lebih sulit untuk terbukti benar
+	daripada program berurutan, sekali lagi, bukankah kebenaran \emph{benar
+	-benar} ada dalam daftar?
 }\QuickQuizAnswerM{
-	From an engineering standpoint, the difficulty in proving
-	correctness, either formally or informally, would be important
-	insofar as it impacts the primary goal of productivity.
-	So, in cases where correctness proofs are important, they
-	are subsumed under the ``productivity'' rubric.
+	Dari sudut pandang teknik, kesulitan dalam membuktikan kebenaran, baik
+	secara formal maupun informal, akan menjadi penting sejauh itu berdampak
+	pada tujuan utama produktivitas.Jadi, dalam kasus di mana bukti kebenaran
+	itu penting, mereka dimasukkan ke dalam rubrik `` produktivitas ''.
 }\QuickQuizEndM
 %
 \QuickQuizE{
-	What about just having fun?
+	Bagaimana dengan bersenang-senang saja?
 }\QuickQuizAnswerE{
-	Having fun is important as well, but, unless you are a hobbyist,
-	would not normally be a \emph{primary} goal.
-	On the other hand, if you \emph{are} a hobbyist, go wild!
+	Bersenanng-senang juga penting, tetapi, kecuali kamu adalah tidak hobbyist ,
+	biasanya tidak akan menjadi tujuan \emph{utama}. Sementara itu, jika kamu
+	\emph{adalah} hobbyist, silakan bermain!
 }\QuickQuizEndE
 }
 
-Each of these goals is elaborated upon in the following sections.
+Setiap tujuan ini dijelaskan lebih lanjut pada bagian berikut.
 
 \subsection{Performance}
 \label{sec:intro:Performance}
 
-Performance is the primary goal behind most parallel-programming effort.
-After all, if performance is not a concern, why not do yourself a favor:
-Just write sequential code, and be happy?
-It will very likely be easier
-and you will probably get done much more quickly.
+Performa adalah tujuan utama dari sebagian besar usaha pemrograman paralel.
+Setelah semua, jika kinerja bukanlah masalah, mengapa tidak melakukan dirimu
+sendiri suatu kebaikan: Hanya menulis kode berurutan, dan bahagia? Itu akan
+sangat jauh lebih mudah.
 
 \QuickQuiz{
-	Are there no cases where parallel programming is about something
-	other than performance?
+	Apakah tidak ada kasus di mana pemrograman paralel adalah tentang sesuatu
+	selain kinerja?
 }\QuickQuizAnswer{
-	There certainly are cases where the problem to be solved is
-	inherently parallel, for example, Monte Carlo methods and
-	some numerical computations.
-	Even in these cases, however, there will be some amount of
-	extra work managing the parallelism.
+	Tentu saja ada kasus dimana masalah yang akan diselesaikan adalah paralel
+	secara alami, misalnya, metode {\it Monte Carlo} dan beberapa komputasi
+	numerik. Bahkan dalam kasus-kasus ini, bagaimanapun, akan ada sejumlah kerja
+	tambahan dalam mengelola paralelisme.
 
-	Parallelism is also sometimes used for reliability.
-	For but one example,
-	triple-modulo redundancy has three systems run in parallel
-	and vote on the result.
-	In extreme cases, the three systems will be independently
-	implemented using different algorithms and technologies.
+	Paralelisme juga sering digunakan untuk keandalan. Untuk satu contoh,
+	redundansi triple-modulo memiliki tiga sistem yang akan berjalan dalam
+	paralel dan memilih hasilnya. Dalam kasus ekstrem, tiga sistem akan
+	diimplementasikan secara independen menggunakan algoritma dan teknologi yang
+	berbeda.
 }\QuickQuizEnd
 
-Note that ``performance'' is interpreted broadly here,
-including for example \IX{scalability} (performance per CPU) and \IX{efficiency}
-(performance per watt).
+Harap dicatat bahwa ``kinerja'' diinterpretasikan secara luas di sini,
+termasuk, misalnya, \IX{skalabilitas} (kinerja per CPU) dan \IX{efisiensi}
+(kinerja per watt).
 
 \begin{figure}
 \centering
@@ -347,124 +303,116 @@ including for example \IX{scalability} (performance per CPU) and \IX{efficiency}
 \label{fig:intro:Clock-Frequency Trend for Intel CPUs}
 \end{figure}
 
-That said, the focus of performance has shifted from hardware to
-parallel software.
-This change in focus is due to the fact that, although \IXr{Moore's Law}
-continues to deliver increases in transistor density, it has ceased to
-provide the traditional single-threaded performance increases.
-This can be seen in
-\cref{fig:intro:Clock-Frequency Trend for Intel CPUs},\footnote{
-	This plot shows clock frequencies for newer CPUs theoretically
-	capable of retiring one or more instructions per clock, and MIPS
-	(millions of instructions per second, usually from the old
-	Dhrystone benchmark)
-	for older CPUs requiring multiple clocks to execute even the
-	simplest instruction.
-	The reason for shifting between these two measures is that the
-	newer CPUs' ability to retire multiple instructions per clock is
-	typically limited by memory-system performance.
-	Furthermore, the benchmarks commonly used on the older CPUs
-	are obsolete, and it is difficult to run the newer benchmarks
-	on systems containing the old CPUs, in part because it is hard
-	to find working instances of the old CPUs.}
-which shows that writing single-threaded code and simply waiting
-a year or two for the CPUs to catch up may no longer be an option.
-Given the recent trends on the part of all major manufacturers towards
-multicore/multithreaded systems, parallelism is the way to go for
-those wanting to avail themselves of the full performance of their
-systems.
+Itu menyebutkan bahwa, fokus kinerja telah bergeser dari perangkat keras ke
+perangkat lunak paralel.
+Perubahan fokus ini disebabkan oleh fakta bahwa, meskipun \IXr{Moore's Law}
+terus menghasilkan peningkatan dalam densitas transistor, ia telah berhenti
+memberikan kenaikan kinerja berurutan.
+Hal ini dapat dilihat di
+\cref{fig:intro:Clock-Frequency Trend for Intel CPUs}.\footnote{
+	plot ini menunjukkan frekuensi jam untuk CPU yang lebih baru secara
+	teoretis mampu menghentikan satu atau lebih instruksi per jam, dan MIPS
+	(jutaan instruksi per detik, biasanya dari Dhrystone lama)
+	untuk CPU yang lebih lama yang memerlukan beberapa jam untuk mengeksekusi
+	bahkan instruksi paling sederhana.
+	Alasan untuk bergeser antara dua ukuran ini adalah bahwa kemampuan
+	CPU yang lebih baru untuk menghentikan beberapa instruksi per jam
+	umumnya terbatas oleh kinerja sistem memori.
+	Selanjutnya, benchmark yang umum digunakan pada CPU yang lebih lama
+	tertua, dan sulit untuk menjalankan benchmark yang lebih baru
+	pada sistem yang berisi CPU lama, sebagian karena
+	sulit untuk menemukan contoh yang berfungsi dari CPU lama.
+}
+yang menunjukkan bahwa menulis kode satu atau dua tahun tunggu untuk CPU untuk mengejar ketinggalan mungkin tidak lagi menjadi pilihan. Menghidupkan tren baru-baru ini pada bagian dari semua produsen utama menuju sistem Multicore/Multithreaded, paralelisme adalah cara untuk majuingin memanfaatkan kinerja penuh dari sistem mereka.
 
 \QuickQuiz{
-	Why not instead rewrite programs from inefficient scripting
-	languages to C or C++?
+	Mengapa tidak sekalian menulis ulang program dari bahasa skrip yang
+	inefisien ke C atau C++?
 }\QuickQuizAnswer{
-	If the developers, budget, and time is available for such a
-	rewrite, and if the result will attain the required levels
-	of performance on a single CPU, this can be a reasonable
-	approach.
+	Jika developer, anggaran, dan waktu tersedia untuk menulis ulang
+	program seperti itu, dan jika hasilnya akan mencapai tingkat
+	kinerja yang diperlukan pada satu CPU, ini bisa menjadi pendekatan
+	yang masuk akal.
 }\QuickQuizEnd
 
-Even so, the first goal is performance rather than scalability,
-especially given that the easiest way to attain linear scalability
-is to reduce the performance of each CPU~\cite{LinusTorvalds2001a}.
-Given a four-CPU system, which would you prefer?
-A program that provides 100 transactions per second on a single CPU,
-but does not scale at all?
-Or a program that provides 10 transactions per second on a single CPU,
-but scales perfectly?
-The first program seems like a better bet, though the answer might
-change if you happened to have a 32-CPU system.
+Jika begitu, tujuan awal adalah kinerja, bukan skala.
+Terlepas dari itu, cara termudah untuk mencapai skala linier adalah
+mengurangi kinerja setiap CPU~\cite{LinusTorvalds2001a}.
+Dengan sistem empat-CPU, mana yang kamu pilih?
+Program yang memberikan 100 transaksi per detik pada satu CPU,
+tetapi tidak skala sama sekali?
+Atau program yang memberikan 10 transaksi per detik pada satu CPU,
+tetapi skala sempurna?
+Program pertama tampaknya lebih baik, meskipun jawaban mungkin berubah
+jika kamu memiliki sistem 32-CPU.
 
-That said, just because you have multiple CPUs is not necessarily
-in and of itself a reason to use them all, especially given the
-recent decreases in price of multi-CPU systems.
-The key point to understand is that parallel programming is primarily
-a performance optimization, and, as such, it is one potential optimization
-of many.
-If your program is fast enough as currently written, there is no
-reason to optimize, either by parallelizing it or by applying any
-of a number of potential sequential optimizations.\footnote{
-	Of course, if you are a hobbyist whose primary interest is
-	writing parallel software, that is more than enough reason to
-	parallelize whatever software you are interested in.}
-By the same token, if you are looking to apply parallelism as an
-optimization to a sequential program, then you will need to compare
-parallel algorithms to the best sequential algorithms.
-This may require some care, as far too many publications ignore the
-sequential case when analyzing the performance of parallel algorithms.
+Yang mengatakan, hanya karena kamu memiliki beberapa CPU bukan berarti
+itu adalah alasan untuk menggunakan semua, terutama karena penurunan
+harga sistem multi-CPU terbaru.
+Poin kunci untuk memahami adalah bahwa pemrograman paralel adalah
+optimasi kinerja, dan, sebagai akibatnya, adalah salah satu optimasi
+potensial dari banyak.
+Jika programmu cukup cepat seperti yang ditulis sekarang, tidak ada
+alasan untuk mengoptimalkan, baik dengan paralelisasi atau dengan
+memberinya beberapa optimasi berurutan lainnya.\footnote{
+	Jika kamu adalah hobi yang berfokus pada menulis perangkat lunak
+	paralel, itu sudah cukup alasan untuk paralelisasi apa pun yang
+	kamu minati.}
+Dengan kata yang sama, jika kamu mencari untuk menerapkan paralelisme
+sebagai optimasi untuk program berurutan, kamu akan perlu membandingkan
+algoritma paralel dengan algoritma terbaik berurutan.
+Ini mungkin memerlukan sedikit perhatian, karena terlalu banyak publikasi
+mengabaikan kasus berurutan ketika menganalisis kinerja algoritma paralel.
 
 \subsection{Productivity}
 \label{sec:intro:Productivity}
 
 \EQuickQuiz{
-	Why all this prattling on about non-technical issues???
-	And not just \emph{any} non-technical issue, but \emph{productivity}
-	of all things?
-	Who cares?
+	Kenapa semua ini berbicara tentang masalah non-teknis??
+	Dan bukan hanya \emph{sembarang} masalah non-teknis, tetapi
+	\emph{produktivitas} dari semua hal?
+	Mengapa harus peduli?
 }\EQuickQuizAnswer{
-	If you are a pure hobbyist, perhaps you don't need to care.
-	But even pure hobbyists will often care about how much they
-	can get done, and how quickly.
-	After all, the most popular hobbyist tools are usually those
-	that are the best suited for the job, and an important part of
-	the definition of ``best suited'' involves productivity.
-	And if someone is paying you to write parallel code, they will
-	very likely care deeply about your productivity.
-	And if the person paying you cares about something, you would
-	be most wise to pay at least some attention to it!
+	Jika kamu hanya sekedar hobi, mungkin kamu tidak perlu peduli.
+	Tetapi bahkan hobi yang hanya sekedar akan sering peduli tentang
+	seberapa banyak yang bisa mereka lakukan, dan seberapa cepat.
+	Setelah semua, alat hobi yang paling populer biasanya adalah
+	yang paling cocok untuk pekerjaan, dan bagian penting dari
+	definisi ``paling cocok'' melibatkan produktivitas.
+	Dan jika seseorang membayar kamu untuk menulis kode paralel,
+	mereka akan sangat peduli dengan produktivitasmu.
+	Dan jika orang yang membayarmu peduli tentang sesuatu, kamu akan
+	lebih bijak untuk memperhatikan setidaknya beberapa hal itu!
 
-	Besides, if you \emph{really} didn't care about productivity,
-	you would be doing it by hand rather than using a computer!
+	Di sisi lain, jika kamu \emph{memang} tidak peduli tentang produktivitas,
+	mungkin kamu tidak perlu mempelajari paralelisme.
 }\EQuickQuizEnd
 
-\IX{Productivity} has been becoming increasingly important in recent decades.
-To see this, consider that the price of early computers was tens
-of millions of dollars at
-a time when engineering salaries were but a few thousand dollars a year.
-If dedicating a team of ten engineers to such a machine would improve
-its performance, even by only 10\,\%, then their salaries
-would be repaid many times over.
+\IX{Produktivitas} telah menjadi semakin penting dalam beberapa dekade terakhir.
+Untuk melihat ini, pertimbangkan bahwa harga komputer awal adalah
+puluhan juta dolar pada saat gaji insinyur hanya beberapa ribu dolar per tahun.
+Jika menugaskan tim sepuluh insinyur untuk mesin seperti itu akan meningkatkan
+kinerjanya, bahkan sebesar 10\,\%, maka gaji mereka
+akan dibayar puluhan kali lipat.
 
-One such machine was the CSIRAC, the oldest still-intact stored-program
-computer, which was put into operation in
-1949~\cite{CSIRACMuseumVictoria,CSIRACUniversityMelbourne}.
-Because this machine was built before the transistor era, it was constructed
-of 2,000 vacuum tubes, ran with a clock frequency of 1\,kHz,
-consumed 30\,kW of power, and weighed more than three metric tons.
-Given that this machine had but 768 words of RAM, it is safe to say that
-it did not suffer from the productivity issues that often plague
-today's large-scale software projects.
+Satu dari beberapa mesin adalah CSIRAC, komputer program yang masih
+tertahan, yang ditempatkan dalam operasi pada tahun 1949~\cite{CSIRACMuseumVictoria,CSIRACUniversityMelbourne}.
+Karena mesin ini dibangun sebelum era transistor, mesin ini dibangun
+dari 2.000 tabung vakum, berjalan dengan frekuensi 1\,kHz perjam,
+mengkonsumsi 30\,kW daya, dan berat lebih dari tiga ton metrik.
+Diketahui bahwa mesin ini memiliki 768 kata RAM, maka dapat disimpulkan
+bahwa mesin ini tidak menderita dari masalah produktivitas yang sering
+menyerang proyek perangkat lunak skala besar hari ini.
 
-Today, it would be quite difficult to purchase a machine with so
-little computing power.
-Perhaps the closest equivalents
-are 8-bit embedded microprocessors exemplified by the venerable
-Z80~\cite{z80Wikipedia}, but even the old Z80 had a CPU clock
-frequency more than 1,000 times faster than the CSIRAC\@.
-The Z80 CPU had 8,500 transistors, and could be purchased in 2008
-for less than \$2 US per unit in 1,000-unit quantities.
-In stark contrast to the CSIRAC, software-development costs are
-anything but insignificant for the Z80.
+Hari ini, mesin seperti itu akan sangat sulit dibeli dengan
+sangat sedikit daya komputasi.
+Mungkin contoh sederhanya seperti 8-bit embedded microprocessor yang
+disebutkan di Z80~\cite{z80Wikipedia}, tetapi bahkan Z80 lama
+memiliki frekuensi CPU lebih dari 1.000 kali lebih cepat dari CSIRAC.
+Z80 CPU memiliki 8.500 transistor, dan dapat dibeli pada tahun 2008
+dengan harga kurang dari \$2 US per unit dalam jumlah 1.000 unit.
+Dalam kontras dengan CSIRAC, biaya pengembangan perangkat lunak
+sangat tidak signifikan untuk Z80.
 
 \begin{figure}
 \centering
@@ -473,121 +421,115 @@ anything but insignificant for the Z80.
 \label{fig:intro:MIPS per Die for Intel CPUs}
 \end{figure}
 
-The CSIRAC and the Z80 are two points in a long-term trend, as can be
-seen in
-\cref{fig:intro:MIPS per Die for Intel CPUs}.
-This figure plots an approximation to computational power per die
-over the past four decades, showing an impressive six-order-of-magnitude
-increase over a period of forty years.
-Note that the advent of multicore CPUs has permitted this increase to
-continue apace despite the clock-frequency wall encountered in 2003,
-albeit courtesy of dies supporting more than 50 hardware threads each.
+CSIRAC dan Z80 adalah dua titik dalam tren jangka panjang, seperti
+dapat dilihat di \cref{fig:intro:MIPS per Die for Intel CPUs}.
+Gambar ini menampilkan perkiraan daya komputasi per die selama
+empat dekade terakhir, menunjukkan peningkatan enam orde besar
+selama periode empat puluh tahun.
+Perhatikan bahwa munculnya CPU multicore telah memungkinkan peningkatan
+ini terus berlanjut meskipun tembok frekuensi jam tangan terjadi pada
+tahun 2003, meskipun dengan biaya dies yang mendukung lebih dari 50
+thread perangkat keras masing-masing.
 
-One of the inescapable consequences of the rapid decrease in
-the cost of hardware is that software productivity becomes increasingly
-important.
-It is no longer sufficient merely to make efficient use of the hardware:
-It is now necessary to make extremely efficient use of software
-developers as well.
-This has long been the case for sequential hardware, but
-parallel hardware has become a low-cost commodity only recently.
-Therefore, only recently has high productivity become critically important
-when creating parallel software.
+Salah satu konsekuensi yang tak terhindarkan dari penurunan drastis dari biaya
+perangkat keras adalah bahwa produktivitas perangkat lunak menjadi semakin
+penting.
+Tidak lagi cukup hanya untuk memanfaatkan perangkat keras secara
+efisien: sekarang perlu untuk menggunakan pengembang perangkat lunak yang lebih
+efisien juga.Ini telah lama menjadi kasus untuk perangkat keras berurutan,
+tetapi perangkat keras paralel telah menjadi komoditas berbiaya rendah baru-baru
+ini.Oleh karena itu, hanya baru -baru ini produktivitas tinggi menjadi lebih
+penting saat membuat perangkat lunak paralel.
 
 \QuickQuiz{
-	Given how cheap parallel systems have become, how can anyone
-	afford to pay people to program them?
+	Dengan murahnya sistem paralel, bagaimana seseorang bisa
+	membayar orang untuk mengembangkan perangkat lunak untuk mereka?
 }\QuickQuizAnswer{
-	There are a number of answers to this question:
+	Ada beberapa jawaban untuk pertanyaan ini:
 	\begin{enumerate}
-	\item	Given a large computational cluster of parallel machines,
-		the aggregate cost of the cluster can easily justify
-		substantial developer effort, because the development
-		cost can be spread over the large number of machines.
-	\item	Popular software that is run by tens of millions of users
-		can easily justify substantial developer effort,
-		as the cost of this development can be spread over the tens
-		of millions of users.
-		Note that this includes things like kernels and system
-		libraries.
-	\item	If the low-cost parallel machine is controlling the operation
-		of a valuable piece of equipment, then the cost of this
-		piece of equipment might easily justify substantial
-		developer effort.
-	\item	If the software for the low-cost parallel machine produces an
-		extremely valuable result (e.g., energy savings),
-		then this valuable result might again justify substantial
-		developer cost.
-	\item	Safety-critical systems protect lives, which can clearly
-		justify very large developer effort.
-	\item	Hobbyists and researchers might instead seek knowledge,
-		experience, fun, or glory.
+	\item 	Diberikan sebuah klaster komputasi besar dari mesin paralel,
+		biaya agregat klaster bisa dengan mudah mempertimbangkan
+		usaha pengembangan yang besar, karena biaya pengembangan
+		dapat dibagi dengan banyaknya mesin.
+	\item	Perangkat lunak populer yang dijalankan oleh puluhan juta pengguna
+		dapat dengan mudah membenarkan upaya pengembang yang substansial,
+		karena biaya pengembangan ini dapat disebarkan di atas puluhan
+		jutaan pengguna.
+		Perhatikan bahwa ini termasuk hal -hal seperti kernel dan sistem
+		Perpustakaan.
+	\item 	Jika mesin paralel murah digunakan untuk mengontrol operasi
+		suatu peralatan yang bernilai tinggi, maka biaya peralatan
+		ini mungkin dengan mudah mempertimbangkan usaha pengembangan
+		yang besar.
+	\item	Jika perangkat lunak untuk mesin paralel murah menghasilkan
+		hasil yang sangat bernilai (misalnya, penghematan energi),
+		maka hasil yang bernilai ini mungkin dengan mudah mempertimbangkan
+		usaha pengembangan yang besar.
+	\item	Sistem kritis keamanan melindungi nyawa, yang dapat dengan
+		jelas mempertimbangkan usaha pengembangan yang sangat besar.
+	\item	Hobi dan peneliti mungkin mencari pengetahuan, pengalaman,
+		hiburan, atau kehormatan.
 	\end{enumerate}
-	So it is not the case that the decreasing cost of hardware renders
-	software worthless, but rather that it is no longer possible to
-	``hide'' the cost of software development within the cost of
-	the hardware, at least not unless there are extremely large
-	quantities of hardware.
+	Jadi ini bukanlah kasus bahwa biaya perangkat keras yang murah
+	membuat perangkat lunak tidak berharga, tetapi lebih bahwa
+	tidak lagi mungkin untuk ``menyembunyikan'' biaya pengembangan
+	perangkat lunak dalam biaya perangkat keras, setidaknya tidak
+	kecuali ada jumlah besar perangkat keras.
 }\QuickQuizEnd
 
-Perhaps at one time, the sole purpose of parallel software was performance.
-Now, however, productivity is gaining the spotlight.
+Mungkin pada satu waktu, satu-satunya tujuan perangkat lunak paralel adalah
+kinerja. Namun, sekarang, produktivitas juga mendapatkan sorotan.
 
 \subsection{Generality}
 \label{sec:intro:Generality}
 
-One way to justify the high cost of developing parallel software
-is to strive for maximal \IX{generality}.
-All else being equal, the cost of a more-general software artifact
-can be spread over more users than that of a less-general one.
-In fact, this economic force explains much of the maniacal focus
-on portability, which can be seen as an important special case
-of generality.\footnote{
-	Kudos to Michael Wong for pointing this out.}
+Salah satu cara untuk menjamin biaya tinggi pengembangan perangkat lunak paralel
+adalah untuk berusaha untuk memaksimalkan \IX{generality}. Semua hal lain yang
+sama, biaya perangkat lunak yang lebih umum dapat dibagi dengan lebih banyak
+pengguna daripada perangkat lunak yang kurang umum. Faktanya, gaya ekonomi ini
+menjelaskan banyak fokus manik-manik pada portabilitas, yang dapat dilihat
+sebagai kasus khusus penting dari generality.\footnote{
+	Apresiasi untuk Michael Wong yang telah menunjukkan hal ini.}
 
-Unfortunately, generality often comes at the cost of performance,
-productivity, or both.
-For example, portability is often achieved via adaptation layers,
-which inevitably exact a performance penalty.
-To see this more generally, consider the following popular parallel
-programming environments:
+Sayangnya, umumnya datang dengan biaya kinerja, produktivitas, atau keduanya.
+Misalnya, portabilitas sering dicapai melalui lapisan adaptasi, yang tentu saja
+mengakibatkan biaya kinerja. Untuk melihat hal ini secara lebih umum,
+pertimbangkan lingkungan pemrograman paralel berikut:
 
 \begin{description}
-\item[C/C++ ``Locking Plus Threads'':] This category, which includes
-	POSIX Threads (pthreads)~\cite{OpenGroup1997pthreads},
-	Windows Threads, and numerous
-	operating-system kernel environments, offers excellent performance
-	(at least within the confines of a single SMP system)
-	and also offers good generality.
-	Pity about the relatively low productivity.
-\item[Java:] This general purpose and inherently multithreaded
-	programming environment	is widely believed to offer much higher
-	productivity than C or C++, courtesy of the automatic garbage collector
-	and the rich set of class libraries.
-	However, its performance, though greatly improved in the early
-	2000s, lags that of C and C++.
-\item[MPI:] This Message Passing Interface~\cite{MPIForum2008} powers
-	the largest scientific and technical computing clusters in
-	the world and offers unparalleled performance and scalability.
-	In theory, it is general purpose, but it is mainly used
-	for scientific and technical computing.
-	Its productivity is believed by many to be even lower than that
-	of C/C++ ``locking plus threads'' environments.
-\item[OpenMP:] This set of compiler directives can be used
-	to parallelize loops.
-	It is thus quite specific to this
-	task, and this specificity often limits its performance.
-	It is, however, much easier to use than MPI or C/C++
+\item[C/C++ ``Locking'':] Kategori ini, yang mencakup POSIX Threads
+	(pthreads)~\cite{OpenGroup1997pthreads}, Windows Threads, dan
+	banyak lingkungan kernel sistem operasi, menawarkan kinerja yang
+	luar biasa (setidaknya dalam batas-batas sistem SMP tunggal) dan
+	juga menawarkan keumuman yang baik.
+	Maafkan produktivitas yang relatif rendah.
+\item[Java:] Lingkungan pemrograman umum dan secara alami multithreaded
+	ini sangat dipercaya menawarkan produktivitas yang jauh lebih tinggi
+	dari C atau C++, karena adanya kolektor sampah otomatis dan kumpulan
+	kelas pustaka yang kaya.
+	Tetapi, kinerjanya, meskipun telah ditingkatkan secara signifikan
+	pada awal 2000an, tertinggal dari C dan C++.
+\item[MPI:] Antarmuka Pesan Passing~\cite{MPIForum2008} ini menggerakkan
+	klaster komputasi ilmiah dan teknis terbesar di dunia dan menawarkan
+	kinerja dan skala yang tak tertandingi.
+	Dalam teori, itu umum, tetapi itu sebagian besar digunakan untuk
+	komputasi ilmiah dan teknis.
+	Produktivitasnya diyakini oleh banyak orang untuk sangat rendah
+	dibandingkan dengan lingkungan C/C++ ``locking plus threads''.
+\item[OpenMP:] Kumpulan direktif kompiler ini dapat digunakan untuk
+	paralelisasi loop.
+	Ia sangat spesifik untuk tugas ini, dan spesifikitas ini seringkali
+	mengurangi kinerjanya.
+	Tetapi, ia jauh lebih mudah digunakan daripada MPI atau C/C++
 	``locking plus threads.''
-\item[SQL:] Structured Query Language~\cite{DIS9075SQL92} is
-	specific to relational database queries.
-	However, its performance is quite good as measured by the
-	Transaction Processing Performance Council (TPC)
-	benchmark results~\cite{TPC}.
-	Productivity is excellent; in fact, this parallel programming
-	environment enables people to make good use of a large parallel
-	system despite having little or no knowledge of parallel
-	programming concepts.
+\item[SQL:] Structured Query Language~\cite{DIS9075SQL92} spesifik untuk
+	perintah database relasional.
+	Tetapi, kinerjanya cukup baik seperti yang diukur oleh hasil benchmark
+	Transaction Processing Performance Council (TPC)~\cite{TPC}.
+	Produktivitasnya sangat baik; sebenarnya, lingkungan pemrograman
+	paralel ini memungkinkan orang untuk membuat penggunaan yang baik
+	dari sistem paralel besar meskipun mereka memiliki sedikit atau
+	tidak ada pengetahuan tentang konsep pemrograman paralel.
 \end{description}
 
 \begin{figure}
@@ -596,6 +538,15 @@ programming environments:
 \caption{Software Layers and Performance, Productivity, and Generality}
 \label{fig:intro:Software Layers and Performance; Productivity; and Generality}
 \end{figure}
+
+Nirvana dari lingkungan pemrograman paralel, yang menawarkan kinerja
+dunia, produktivitas, dan umum, tidak ada.
+Sampai nirvana itu muncul, akan diperlukan pertukaran teknis antara
+kinerja, produktivitas, dan umum.
+Salah satu pertukaran teknis ini ditampilkan oleh ``iron triangle'' berwarna
+hijau yang ditunjukkan di \cref{fig:intro:Software Layers and Performance;
+Productivity; and Generality}, yang menunjukkan bahwa produktivitas menjadi
+
 
 The nirvana of parallel programming environments, one that offers
 world-class performance, productivity, and generality, simply does
